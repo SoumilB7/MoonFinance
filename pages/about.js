@@ -1,5 +1,6 @@
 import React from 'react'
-
+import '../app/globals.css'
+import Navbar from '@/components/Navbar'
 const about = () => {
   return (
     <div>
@@ -7,5 +8,4 @@ const about = () => {
     </div>
   )
 }
-
 export default about
