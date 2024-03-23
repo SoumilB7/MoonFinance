@@ -15,17 +15,22 @@ export default async function  handler(req, res) {
 
     //     }
        
-
-    try {
-        await ConnectToDB()
-        const risk = calcRisk();
-        const stablity = calcStability();
-        const diversity = calcDiversity();
-        const {userId , questions} = req.body;
-        const data = await userResponse.create({userId , questions , risk , stablity , diversity})
-        console.log("data added")
-        res.send(data)
-    } catch (error) {
-        console.log(error)
-    }    
+    if(req.method !=="POST"){
+        res.status(405).json({ message:"Method not allowed"})
+        return;
+    }else{
+        try {
+            await ConnectToDB()
+            const risk = calcRisk();
+            const stablity = calcStability();
+            const diversity = calcDiversity();
+            const {userId , questions} = req.body;
+            const data = await userResponse.create({userId , questions , risk , stablity , diversity})
+            console.log("data added")
+            res.send(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+        
 }
