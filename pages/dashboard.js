@@ -8,7 +8,6 @@ const dashboard = () => {
   return (
     <div>
     <Navbar2/>
-
     <Dashboard/>
     </div>
   )
