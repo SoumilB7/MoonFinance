@@ -17,13 +17,10 @@
     "next-images": "^1.8.5",
     "react": "^18",
     "react-dom": "^18",
-<<<<<<< HEAD
     "react-icons": "^5.0.1",
-    "recharts": "^2.12.3"
-=======
+    "recharts": "^2.12.3",
     "sass": "^1.72.0"
     
->>>>>>> 74b0fec8c5d97403816a06e201e91482a27d89f4
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
