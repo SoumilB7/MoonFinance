@@ -22,7 +22,7 @@ const Dashboard = () => {
   const cagr = 10.28;
   return (
     <>
-      <div className="h-screen bg-black text-white font-[Poppins] overflow-x-hidden overflow-hidden">
+      <div className="h-screen bg-black text-white font-[Poppins] overflow-x-hidden">
         <div className="text-6xl mt-[15%] w-full text-center px-6 font-semibold md:text-left max-sm:px-20 max-sm:text-5xl md:font-bold max-sm:pt-6 text-nowrap">
           Your Assets
         </div>
@@ -84,7 +84,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="max-md:hidden">
-          <hr className="bg-[#212121] w-[50%] mt-10 mx-6 opacity-40" />
+          <hr className="bg-[#212121] w-[50%] -mt-[30%] mx-6 opacity-40" />
         </div>
         <div className="w-full text-center md:hidden flex-row justify-center max-sm:px-6 -mt-[38%]">
           {/*Paragraph*/}
@@ -97,16 +97,22 @@ const Dashboard = () => {
             temporibus tempora deleniti voluptate dolorem eos modi.
           </p>
         </div>
-      </div>
-      <div className="mt-10 text-5xl font-semibold pb-4 sm:text-center sm:pb-6 z-0">
-        Your Basket
-      </div>
-      <div className="flex justify-center">
-        <Image
-          src={dash}
-          className="blur-sm sm:w-full sm:blur-lg z-0 absolute"
-        ></Image>
-          <Image src={overlap} className="z-20 relative pt-[20%] "></Image>
+        <div className="md:-mt-[8%] relative">
+          <div className="px-[22%] pt-[10%] text-5xl text-nowrap font-semibold sm:px-0 sm:pb-6 md:pl-10 md:pb-10">
+            Your Basket
+          </div>
+          <div className="">
+            <Image
+              src={dash}
+              className="pt-8 blur-sm md:w-full md:blur-lg"
+            ></Image>
+              <Image
+                src={overlap}
+                className=" -mt-[60%] mx-20 sm:-mt-[50%] sm:mx-[30%] md:-mt-[50%] md:mx-30 absolute lg:mx-[30%] lg:w-[600px] lg:h-[600px] lg:-mt-[50%]"
+              ></Image>
+          </div>
+          <button className="bg-blue-500 absolute w-[200px] h-[50px] rounded-lg mx-[30%] -mt-[10%] sm:mx-[37%] md:mx-[36%] md:-mt-[20%] lg:-mt-[23%] lg:mx-[40%] lg:w-[300px] lg:text-3xl">Invest</button>
+        </div>
       </div>
     </>
   );

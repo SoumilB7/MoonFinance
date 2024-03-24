@@ -32,7 +32,7 @@ const Navbar2 = () => {
         <div onClick={handleNav} className="md:hidden m-5">
           {nav ? '' : <HiMenu size={32} />}
         </div>
-        <div className={nav ? 'bg-[#1E1F1E] w-[100%] h-screen right-0 top-0 fixed z-30 text-white transition ease-linear duration-300':' fixed left-[-100%]'}>
+        <div className={nav ? 'bg-[#1E1F1E] w-[100%] h-screen right-0 top-0 absolute z-30 text-white transition ease-linear duration-300':' fixed left-[-100%]'}>
           <div 
           onClick={()=>setNav(!nav)}
           className='text-4xl flex justify-end mt-4 '>
@@ -60,5 +60,5 @@ const Navbar2 = () => {
     </>
   )
 }
-
+ 
 export default Navbar2;
