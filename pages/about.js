@@ -1,12 +1,12 @@
 import About from '@/components/About/About'
-import Navbar from '@/components/Navbar'
-import React from 'react'
 
+import React from 'react'
+import '../app/globals.css'
+import Navbar from '@/components/Navbar'
 const about = () => {
   return (<>
     <About/>
     </>
   )
 }
-
 export default about
