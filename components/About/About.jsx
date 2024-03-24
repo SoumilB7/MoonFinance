@@ -7,6 +7,7 @@ import soumilb from '../../public/soumilb.svg'
 import prateek from '../../public/prateek.svg'
 import RadhikaL from '../../public/RadhikaL.svg'
 import RadhikaA from '../../public/RadhikaA.svg'
+import Footer from '../Footer'
 export default function About() {
   return (
     <>
@@ -40,6 +41,7 @@ export default function About() {
             </div>
         </div>
     </div>
+    <Footer/>
     </>
   )
 }
