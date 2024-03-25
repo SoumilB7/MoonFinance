@@ -1,0 +1,61 @@
+#contactus{
+  padding: 50px;  
+  font-size: 2em;
+
+}
+footer{
+    background-color: black;
+    height: 50vh;
+    width: 100vw;
+}
+
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+.first{
+    display: flex;
+    flex-direction: column;
+    h3{
+        display: flex;
+        align-items: center;
+        img{
+            margin-right: 0.8em;
+            height: 42px;
+            width: 42px;
+            
+        }
+    }
+}
+.second{
+    p{
+        margin-top: 20px;
+    }
+}
+
+.fourth{
+    img{
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width:1500px) {
+    #contactus{
+        font-size: 1.3em;
+    }
+    .first{
+        img{
+            // width: 42px;
+            // height: 42px;
+        }
+        h3{
+            img{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
