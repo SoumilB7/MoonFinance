@@ -8,10 +8,12 @@ export default async function handler(req, res) {
   } else {
     try {
       await ConnectToDB();
-      const data = await userResponse.find({ userId: "sdfghjk" });
-      res.send({ hello: data });
+      const data = await userResponse.find({});
+      res.send(data);
     } catch (error) {
-      console.log(error);
+      res
+        .status(500)
+        .json({ message: "Internal server error", error: error.message });
     }
   }
 }
