@@ -14,6 +14,9 @@ import { Chart } from "chart.js";
 import overlap from "../../public/overlap.svg";
 import Graph from "../../components/Dashboard/Graph";
 import Image from "next/image";
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+</style>
 const Dashboard = () => {
   const priceInvested = 5000;
   const numberofAssets = 5;
@@ -22,22 +25,22 @@ const Dashboard = () => {
   const cagr = 10.28;
   return (
     <>
-      <div className="h-screen bg-black text-white font-[Poppins] overflow-x-hidden">
-        <div className="text-6xl mt-[15%] w-full text-center px-6 font-semibold md:text-left max-sm:px-20 max-sm:text-5xl md:font-bold max-sm:pt-6 text-nowrap">
+      <div className="h-screen bg-black text-white font-poppins">
+        <div className="text-6xl mt-[2%] w-full text-center px-6 font-semibold md:text-left max-sm:px-20 max-sm:text-5xl md:font-bold max-sm:pt-6 text-nowrap">
           Your Assets
         </div>
-        <div className="grid grid-rows-2 md:grid-cols-2">
-          <div className="pl-[2%] sm:pl-[20%] sm:pt-20">
-            <Graph />
+        <div className="grid grid-rows-2 md:grid-cols-2 font-poppins">
+          <div className="sm:pl-[20%] sm:pt-20 pt-8 pl-[2%] md:px-10">
+          <Graph/>
           </div>
           <div className="grid grid-cols-2 grid-rows-2 mx-auto my-auto -mt-[10%] gap-x-10 gap-y-10 md:mt-[20%] pl-10">
             {/* Data Grid*/}
-            <div className="md:-mt-20">
+            <div className="md:-mt-20 mx-10">
               {/*PRice Invested*/}
               <p className="text-2xl font-normal md:font-normal md:text-4xl">
                 Price Invested
               </p>
-              <p className="text-blue-500 text-3xl font-medium">
+              <p className="text-blue-500 text-2xl font-medium">
                 {priceInvested}
               </p>
             </div>
@@ -47,46 +50,51 @@ const Dashboard = () => {
               <p className="text-2xl font-normal md:font-normal md:text-4xl">
                 CAGR
               </p>
-              <p className="text-blue-500 text-3xl font-medium">{cagr}%</p>
+              <p className="text-blue-500 text-2xl font-medium">{cagr}%</p>
             </div>
 
-            <div className="md:hidden text-nowrap pt-2">
+            <div className="md:hidden text-nowrap pt-2 mx-10">
               {/*Assets*/}
               <p className="text-2xl font-normal md:font-normal md:text-4xl">
                 Risk Profile
               </p>
-              <p className="text-3xl text-[#F7AD19]">{riskProfile}</p>
+              <p className="text-2xl text-[#F7AD19]">{riskProfile}</p>
             </div>
 
-            <div className="mt-2 min-w-[20%]">
+            <div className="mt-2 min-w-[20%] pl-12">
               {/*RebalFreq*/}
-              <p className="text-2xl md:font-bold md:text-2xl">Assets</p>
+              <p className="text-2xl md:font-normal md:text-4xl ">Assets</p>
               <p className="text-2xl font-medium">{numberofAssets}</p>
             </div>
 
-            <div className="max-md:hidden lg:flex-row sm:w-full">
-              <p className="text-2xl font-bold">Rebalance Frequency</p>
-              <p className="text-xl font-medium">{rebalFreq}</p>
+            <div className="max-md:hidden lg:flex-row sm:w-full pr-2 text-wrap">   
+            <p className="text-2xl font-normal md:font-normal md:text-4xl">
+                Risk Profile
+              </p>
+              <p className="text-2xl text-[#F7AD19]">{riskProfile}</p>
             </div>
-
-            <div className="max-md:hidden flex-row w-[180%] mb-8">
+            
+            <div className="max-md:hidden flex-row w-[180%] mb-8 pl-10">
               {" "}
               {/* Laptop Paragraph */}
-              <p className="text-3xl font-bold text-nowrap pt-4">
+              <p className="text-3xl font-bold text-nowrap pt-[10%]">
                 About the allocation
               </p>
-              <p className="pt-4 font-medium text-wrap">
+              <p className="pt-4 font-medium text-wrap text-2xl">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor,
                 ipsum voluptate? Voluptates commodi impedit adipisci. Ipsa
                 doloremque, quibusdam, placeat similique, molestiae eum
               </p>
             </div>
+
+            <button className="w-[200px] h-[50px] bg-blue-500 mx-[40%] md:-mx-[310%] md:mt-[70%] lg:-mx-[270%] lg:mt-[80%] text-xl rounded-lg hover:bg-blue-700">Customise Assets</button>
           </div>
         </div>
-        <div className="max-md:hidden">
+        <div className="max-md:hidden font-poppins">
           <hr className="bg-[#212121] w-[50%] -mt-[30%] mx-6 opacity-40" />
+          
         </div>
-        <div className="w-full text-center md:hidden flex-row justify-center max-sm:px-6 -mt-[38%]">
+        <div className="w-full text-center md:hidden flex-row justify-center max-sm:px-6 -mt-[25%] pt-2 font-poppins">
           {/*Paragraph*/}
           <p className="text-4xl font-medium max-sm:text-3xl sm:pt-10">
             About the allocation
@@ -98,7 +106,7 @@ const Dashboard = () => {
           </p>
         </div>
         <div className="md:-mt-[8%] relative">
-          <div className="px-[22%] pt-[10%] text-5xl text-nowrap font-semibold sm:px-0 sm:pb-6 md:pl-10 md:pb-10">
+          <div className="px-[18%] pt-[10%] text-5xl text-nowrap font-semibold sm:px-0 sm:pb-6 md:pl-10 md:pb-10 font-poppins">
             Your Basket
           </div>
           <div className="">
@@ -111,7 +119,7 @@ const Dashboard = () => {
                 className=" -mt-[60%] mx-20 sm:-mt-[50%] sm:mx-[30%] md:-mt-[50%] md:mx-30 absolute lg:mx-[30%] lg:w-[600px] lg:h-[600px] lg:-mt-[50%]"
               ></Image>
           </div>
-          <button className="bg-blue-500 absolute w-[200px] h-[50px] rounded-lg mx-[30%] -mt-[10%] sm:mx-[37%] md:mx-[36%] md:-mt-[20%] lg:-mt-[23%] lg:mx-[40%] lg:w-[300px] lg:text-3xl">Invest</button>
+          <button className="bg-blue-500 font-poppins absolute w-[200px] h-[50px] rounded-lg mx-[29%] -mt-[10%] sm:mx-[37%] md:mx-[36%] md:-mt-[20%] lg:-mt-[23%] lg:mx-[40%] lg:w-[300px] lg:h-[70px] lg:text-3xl hover:bg-blue-700">Invest</button>
         </div>
       </div>
     </>
