@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Graph from "@/components/Dashboard/Graph";
 import Navbarf from '@/components/Navbarf'
 import "../app/globals.css";
+import Footer from "@/components/Footer";
 const dashboard = () => {
   return (
     <>

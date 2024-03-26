@@ -14,6 +14,7 @@ import { Chart } from "chart.js";
 import overlap from "../../public/overlap.svg";
 import Graph from "../../components/Dashboard/Graph";
 import Image from "next/image";
+import Footer from '../Footer';
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 </style>
@@ -61,7 +62,7 @@ const Dashboard = () => {
               <p className="text-2xl text-[#F7AD19]">{riskProfile}</p>
             </div>
 
-            <div className="mt-2 min-w-[20%] pl-12">
+            <div className="mt-2 min-w-[20%] pl-2 md:pl-12">
               {/*RebalFreq*/}
               <p className="text-2xl md:font-normal md:text-4xl ">Assets</p>
               <p className="text-2xl font-medium">{numberofAssets}</p>
@@ -111,11 +112,12 @@ const Dashboard = () => {
             ></Image>
               <Image
                 src={overlap}
-                className=" -mt-[60%] mx-20 sm:-mt-[50%] sm:mx-[30%] md:-mt-[50%] md:mx-30 absolute lg:mx-[30%] lg:w-[600px] lg:h-[600px] lg:-mt-[50%]"
+                className=" -mt-[60%] mx-[15%] sm:-mt-[50%] sm:mx-[30%] md:-mt-[50%] md:mx-30 absolute lg:mx-[30%] lg:w-[600px] lg:h-[600px] lg:-mt-[50%] h-[200px]"
               ></Image>
           </div>
-          <button className="bg-blue-500 font-poppins absolute w-[200px] h-[50px] rounded-lg mx-[29%] -mt-[10%] sm:mx-[37%] md:mx-[36%] md:-mt-[20%] lg:-mt-[23%] lg:mx-[40%] lg:w-[300px] lg:h-[70px] lg:text-3xl hover:bg-blue-700">Invest</button>
+          <button className="bg-blue-500 font-poppins absolute w-[100px] h-[30px] rounded-lg mx-[37%] -mt-[29%] sm:mx-[37%] md:mx-[36%] md:-mt-[20%] lg:-mt-[23%] lg:mx-[40%] lg:w-[300px] lg:h-[70px] lg:text-3xl hover:bg-blue-700">Invest</button>
         </div>
+        <Footer/>
       </div>
     </>
   );
