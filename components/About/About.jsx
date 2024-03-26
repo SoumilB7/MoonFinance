@@ -3,7 +3,7 @@ import './style.scss'
 
 import Image from 'next/image'
 import shrey from '../../public/shrey.svg'
-import soumilb from '../../public/soumilb.svg'
+import soumilb from '../../public/Soumilb.svg'
 import prateek from '../../public/prateek.svg'
 import RadhikaL from '../../public/RadhikaL.svg'
 import RadhikaA from '../../public/RadhikaA.svg'

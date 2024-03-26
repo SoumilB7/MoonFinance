@@ -81,9 +81,7 @@ const Dashboard = () => {
                 About the allocation
               </p>
               <p className="pt-4 font-medium text-wrap text-2xl">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor,
-                ipsum voluptate? Voluptates commodi impedit adipisci. Ipsa
-                doloremque, quibusdam, placeat similique, molestiae eum
+              We have analysed your investor profile i.e Your risk apetite, stability preference and many other factors which helps us decide your favourable investments. Every investor has a unique profile and this one suits you the best !
               </p>
             </div>
 
@@ -92,7 +90,6 @@ const Dashboard = () => {
         </div>
         <div className="max-md:hidden font-poppins">
           <hr className="bg-[#212121] w-[100%] -mt-[30%] opacity-40" />
-          
         </div>
         <div className="w-full text-center md:hidden flex-row justify-center max-sm:px-6 -mt-[25%] pt-2 font-poppins">
           {/*Paragraph*/}
@@ -100,9 +97,7 @@ const Dashboard = () => {
             About the allocation
           </p>
           <p className="text-center text-xl font-medium max-sm:px-6 pt-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-            voluptates aspernatur culpa illo qui vero libero reprehenderit unde
-            temporibus tempora deleniti voluptate dolorem eos modi.
+          We have analysed your investor profile i.e Your risk apetite, stability preference and many other factors which helps us decide your favourable investments. Every investor has a unique profile and this one suits you the best !
           </p>
         </div>
         <div className="md:-mt-[8%] relative">
