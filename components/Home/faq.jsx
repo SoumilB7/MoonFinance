@@ -1,41 +1,53 @@
-import React from 'react'
+import React from 'react';
 
 const Faq = () => {
   return (
-    <div className='bg-[#E6E6E6] flex flex-col lg:flex-row items-center justify-center p-2 lg:p-10'>
-      <div className='flex flex-col justify-center items-beggining w-full lg:w-1/2 p-5'>
-        <p className='text-2xl lg:text-4xl text-black font-bold'>-FAQ&apos;S</p>
-        <h1 className='text-4xl lg:text-8xl text-black font-extrabold'>Questions ?? Look Here.</h1>
+    <div class="faq">
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div>
+          <h2>-FAQs</h2>
+          <h1>Questions ?? Look Here .</h1>
+        </div>
       </div>
-      <div className='flex flex-col items-start justify-center w-full lg:w-1/2 p-5 lg:p-20 space-y-5'>
-        <details className='text-black text-lg lg:text-xl font-semibold w-full'>
-          <summary className='list-none'>How does MoonFinance Work? <span className='float-right'>&gt;</span></summary>
-          <p className='text-black text-sm lg:text-lg'>MoonFinance works by using advanced algorithms and AI to tailor personalized investment portfolios.</p>
-        </details>
-        <div className='border-t border-black w-full'/>
-        <details className='text-black text-lg lg:text-xl font-semibold w-full'>
-          <summary className='list-none'>Why should I use MoonFinance? <span className='float-right'>&gt;</span></summary>
-          <p className='text-black text-sm lg:text-lg'>MoonFinance works by using advanced algorithms and AI to tailor personalized investment portfolios.</p>
-        </details>
-        <div className='border-t border-black w-full'/>
-        <details className='text-black text-lg lg:text-xl font-semibold w-full'>
-          <summary className='list-none'>How is my money invested? <span className='float-right'>&gt;</span></summary>
-          <p className='text-black text-sm lg:text-lg'>MoonFinance works by using advanced algorithms and AI to tailor personalized investment portfolios.</p>
-        </details>
-        <div className='border-t border-black w-full'/>
-        <details className='text-black text-lg lg:text-xl font-semibold w-full'>
-          <summary className='list-none'>Where is my money invested? <span className='float-right'>&gt;</span></summary>
-          <p className='text-black text-sm lg:text-lg'>MoonFinance works by using advanced algorithms and AI to tailor personalized investment portfolios.</p>
-        </details>
-        <div className='border-t border-black w-full'/>
-        <details className='text-black text-lg lg:text-xl font-semibold w-full'>
-          <summary className='list-none'>Is my money safe with MoonFinance? <span className='float-right'>&gt;</span></summary>
-          <p className='text-black text-sm lg:text-lg'>MoonFinance works by using advanced algorithms and AI to tailor personalized investment portfolios.</p>
-        </details>
-        <div className='border-t border-black w-full'/>
-      </div>
+      <ul class="accordion">
+        <li style={{marginTop:"1rem"}}>
+          <input type="checkbox" name="accordion" id="first" />
+          <label for="first">How does Moon Finance work ?</label>
+          <div class="content">
+            <p>Moon Finance uses a combination of AI & deep research algorithms by our research analysts to give you a portfolio of assets which are the best suited for your investment needs.</p>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" name="accordion" id="second" />
+          <label for="second">Why should I use Moon Finance?</label>
+          <div class="content">
+            <p>Moon Finance is developed in a way to maximize your returns & minimize your risks. It provides you with SEBI certified Investment advisory.</p>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" name="accordion" id="third" />
+          <label for="third">How is my money investment?</label>
+          <div class="content">
+            <p>The money is invested through your broker.</p>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" name="accordion" id="fourth" />
+          <label for="fourth">Where is my money invested?</label>
+          <div class="content">
+            <p>Your money is invested in the portfolio made by Moon Finance based on your investment profile.</p>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox" name="accordion" id="fifth" />
+          <label for="fifth">Is my money safe with Moon Finance?</label>
+          <div class="content">
+            <p>We do not keep your money, the money is directly invested through your broker and the ETFs are transferred to your demat account, i.e you have the full control of your investments.</p>
+          </div>
+        </li>
+      </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Faq
+export default Faq;
