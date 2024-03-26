@@ -91,7 +91,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="max-md:hidden font-poppins">
-          <hr className="bg-[#212121] w-[50%] -mt-[30%] mx-6 opacity-40" />
+          <hr className="bg-[#212121] w-[100%] -mt-[30%] opacity-40" />
           
         </div>
         <div className="w-full text-center md:hidden flex-row justify-center max-sm:px-6 -mt-[25%] pt-2 font-poppins">
