@@ -38,8 +38,8 @@ const Navbar = () => {
         <Link className="p-4 hover:border-white hover:rounded-md hover:border-transparent hover:outline hover:outline-1 text-xl" href='/contactUs'>Contact Us</Link>
       </div>
       <div className="hidden lg:flex space-x-4">
-        <Link href='login'><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button></Link>
-        <Link href='signup'><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Sign Up</button></Link>
+        <Link href='/Login'><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button></Link>
+        <Link href='/Signup'><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Sign Up</button></Link>
       </div>
     </div>
   )
