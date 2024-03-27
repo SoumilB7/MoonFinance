@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import ecount from '../../public/home/ecount.png';
-import microsoft from '../../public/home/microsoft.png';
-import vit from '../../public/home/vit.png';
+import ecount from '../../public/home/ecount.svg';
+import microsoft from '../../public/home/microsoft.svg';
+import vit from '../../public/home/vit.svg';
 
 const Recognizition = () => {
   return (
