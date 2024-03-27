@@ -22,7 +22,7 @@ const Signup = () => {
 
   return (
     <div className="flex flex row">
-      <div className="min-h-screen w-1/2 bg-blue-500">
+      <div className="min-h-screen w-0 bg-blue-500 md:w-1/2">
         <div className="flex justify-center mt-16">
           <svg
             width="245"
@@ -142,7 +142,8 @@ const Signup = () => {
           </button>
         </div>
         <div className="flex-grow border-b-2 border-gray-400 mt-6 w-4/6 mx-[17%]"></div>
-        <div className="ml-16 pl-12 mt-4">
+        <div className="flex column">
+        <div className="ml-16 pl-12 mt-4 flex column mr-4">
         <button onClick={() => setIsOpen(!isOpen)} >
           <svg
             width="20"
@@ -181,6 +182,7 @@ const Signup = () => {
           </svg>
         </button>
         <label>Sign up with Google</label>
+        </div>
         <button onClick={() => setIsOpen(!isOpen)} className="ml-16 pl-16 mt-4">
           <svg
             width="80"
