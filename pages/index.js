@@ -5,6 +5,7 @@ import Home from '@/components/Home/home'
 import Solution from '@/components/Home/solution'
 import Recognizition from '@/components/Home/recognizition'
 import Faq from '@/components/Home/faq'
+import Footer from '@/components/Footer'
 
 const index = () => {
   return (
@@ -14,6 +15,7 @@ const index = () => {
       <Solution/>
       <Recognizition/>
       <Faq/>
+      <Footer/>
     </div>
   )
 }
