@@ -15,10 +15,12 @@ import overlap from "../../public/overlap.svg";
 import Graph from "../../components/Dashboard/Graph";
 import Image from "next/image";
 import Footer from '../Footer';
+import { useRouter } from "next/router";
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 </style>
 const Dashboard = () => {
+  const router= useRouter();
   const priceInvested = 5000;
   const numberofAssets = 5;
   const rebalFreq = "Quarterly";
@@ -86,7 +88,7 @@ const Dashboard = () => {
               </p>
             </div>
 
-            <button className="w-[200px] h-[50px] bg-blue-500 mx-[40%] md:-mx-[310%] md:mt-[70%] lg:-mx-[270%] lg:mt-[80%] text-xl rounded-lg hover:bg-blue-700">Customise Assets</button>
+            <button onClick={()=>{router.push('/form')}} className="w-[200px] h-[50px] bg-blue-500 mx-[40%] md:-mx-[310%] md:mt-[70%] lg:-mx-[270%] lg:mt-[80%] text-xl rounded-lg hover:bg-blue-700">Customise Assets</button>
           </div>
         </div>
         <div className="max-md:hidden font-poppins">
