@@ -21,7 +21,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex row">
+    <div className="flex flex-row">
       <div className="min-h-screen w-1/2 bg-blue-500">
         <div className="flex justify-center mt-16">
           <svg
