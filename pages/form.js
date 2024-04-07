@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../app/globals.css';
+import '../app/globals.css'
 const questions = [
   {
     question: "How much investing experience do you have?",
