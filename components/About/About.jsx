@@ -1,13 +1,13 @@
-import React from "react";
-import "./style.scss";
+import React from 'react';
+import './style.scss';
 
-import Image from "next/image";
-import shrey from "../../public/shrey.svg";
-import soumilb from "../../public/Soumilb.svg";
-import prateek from "../../public/prateek.svg";
-import RadhikaL from "../../public/RadhikaL.svg";
-import RadhikaA from "../../public/RadhikaA.svg";
-import Footer from "../Footer";
+import Image from 'next/image';
+import shrey from '../../public/shrey.svg';
+import soumilb from '../../public/Soumilb.svg';
+import prateek from '../../public/prateek.svg';
+import RadhikaL from '../../public/RadhikaL.svg';
+import RadhikaA from '../../public/RadhikaA.svg';
+import Footer from '../Footer';
 export default function About() {
   return (
     <>
@@ -15,33 +15,21 @@ export default function About() {
         <div className="aboutus_main">
           <div className="aboutusmain"></div>
           <h3>About:</h3>
-          <p>
-            Moon Finance is your AI investment advisory, which is built to give
-            professional investment advisory services to every Indian investor
-            at their fingertip. Our service is non-partial & specially curated
-            for your unique investment needs.
-          </p>
+          <p>Moon Finance is your AI investment advisory, which is built to give professional investment advisory services to every Indian investor at their fingertip. Our service is non-partial & specially curated for your unique investment needs.</p>
           <h3>Our Mission:</h3>
-          <p>
-            To be the one-stop investment platform for planning & execution for
-            Indian investors who are investing for a better future.
-          </p>
+          <p>To be the one-stop investment platform for planning & execution for Indian investors who are investing for a better future.</p>
           <h3>Our Journey:</h3>
-          <p>
-            We are a motivated team who are solving the problem they faced in
-            their own investment journey.
-          </p>
+          <p>We are a motivated team who are solving the problem they faced in their own investment journey.</p>
         </div>
         <hr />
         <div className="aboutus_people">
           <h1
             style={{
-              textAlign: "center",
-              color: "white",
+              textAlign: 'center',
+              color: 'white',
               fontSize: 100,
-              fontFamily: "verdana",
-            }}
-          >
+              fontFamily: 'verdana',
+            }}>
             People
           </h1>
           <div className="aboutus_people_first">
