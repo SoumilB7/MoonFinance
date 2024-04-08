@@ -21,7 +21,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex row">
+    <div className="flex">
       <div className="min-h-screen w-0 bg-blue-500 md:w-1/2">
         <div className="flex justify-center mt-16">
           <svg
@@ -61,7 +61,7 @@ const Signup = () => {
           <label>AI investment advisory for GenZ</label>
         </div>
       </div>
-      <div className="min-h-screen w-1/2 bg-black">
+      <div className="flex flex-col  items-center min-h-screen w-full md:w-1/2 bg-black">
         <div className="text-6xl font-sans font-bold text-center mt-16 pt-4">
           <label>Sign up</label>
         </div>
@@ -77,7 +77,7 @@ const Signup = () => {
                 type="text"
                 autoComplete="username"
                 required
-                className="bg-black block w-4/6 py-1.5 px-3 mt-9 border-2 sm:text-sm"
+                className="bg-black block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm"
                 placeholder="Username"
                 value={formState.username}
                 onChange={handleInputChange}
@@ -93,7 +93,7 @@ const Signup = () => {
                 type="tel"
                 autoComplete="tel"
                 required
-                className="bg-black block w-4/6 py-1.5 px-3 mt-9 border-2 sm:text-sm"
+                className="bg-black block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm"
                 placeholder="Phone number"
                 value={formState.phone}
                 onChange={handleInputChange}
@@ -109,7 +109,7 @@ const Signup = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="bg-black block w-4/6 py-1.5 px-3 mt-9 border-2 sm:text-sm"
+                className="bg-black block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm"
                 placeholder="Email address"
                 value={formState.email}
                 onChange={handleInputChange}
@@ -125,7 +125,7 @@ const Signup = () => {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="bg-black block w-4/6 py-1.5 px-3 mt-9 border-2 sm:text-sm"
+                className="bg-black block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm"
                 placeholder="Password"
                 value={formState.password}
                 onChange={handleInputChange}
@@ -133,7 +133,7 @@ const Signup = () => {
             </div>
           </div>
         </form>
-        <div className="flex justify-start pl-12 ml-14">
+        <div className="flex justify-center pt-6">
           <button
             type="submit"
             className="inline-flex justify-center py-2 px-12 mt-6 border border-transparent shadow-sm text-sm font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
@@ -141,9 +141,9 @@ const Signup = () => {
             CREATE ACCOUNT
           </button>
         </div>
-        <div className="flex-grow border-b-2 border-gray-400 mt-6 w-4/6 mx-[17%]"></div>
-        <div className="flex column">
-        <div className="ml-16 pl-12 mt-4 flex column mr-4">
+        <div className="flex border-b-2 border-gray-400 mt-12 w-4/6 mx-[17%]"></div>
+        <div className="flex column flex-start mb-12">
+        <div className=" mt-4 flex column mr-4">
         <button onClick={() => setIsOpen(!isOpen)} >
           <svg
             width="20"
@@ -183,7 +183,7 @@ const Signup = () => {
         </button>
         <label>Sign up with Google</label>
         </div>
-        <button onClick={() => setIsOpen(!isOpen)} className="ml-16 pl-16 mt-4">
+        <button onClick={() => setIsOpen(!isOpen)} className="ml-12 mt-4">
           <svg
             width="80"
             height="30"
