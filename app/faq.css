@@ -1,0 +1,93 @@
+.faq {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 12%;
+    text-align: center;
+    font-size: 18px;
+    background-color: white;
+    color: #1b1b1b;
+  }
+  
+  .faq h2 {
+    font-weight: 500;
+    font-size: 40px;
+    margin-top: 25px;
+    margin-bottom: 0px;
+  }
+  .faq h1 {
+    font-size: 45px;
+    height: 26px;
+    margin-top: 0px;
+  }
+  
+  @media (max-width: 768px) {
+    .faq h2, .faq h1 {
+      font-size: 30px;
+    }
+    
+  }
+  
+  .accordion {
+    margin: 60px auto;
+    width: 100%;
+    max-width: 750px;
+  }
+  
+  .accordion li {
+    list-style: none;
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .accordion li label {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    background: white;
+    margin-bottom: 2px;
+    cursor: pointer;
+    position: relative;
+    border-style: solid;
+    border-width: 2px;
+  }
+  
+  label::after {
+    width: 57px;
+    height: 57px;
+    content: '+';
+    font-size: 34px;
+    position: absolute;
+    right: 20px;
+    transition: transform 0.5s;
+  }
+  
+  input[type='checkbox'] {
+    display: none;
+  }
+  
+  .accordion .content {
+    border: 2px black;
+    background: white;
+    text-align: left;
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0s, padding 0.5s;
+  }
+  
+  .accordion input[type='checkbox']:checked + label + .content {
+    max-height: 600px;
+    padding: 30px 20px;
+  }
+  
+  .accordion input[type='checkbox']:checked + label::after {
+    transform: rotate(135deg);
+  }
+  
+  .faq small {
+    font-size: 13px;
+  }

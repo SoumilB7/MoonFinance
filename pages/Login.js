@@ -11,8 +11,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex row">
-      <div className="min-h-screen w-1/2 bg-blue-500">
+    <div className="flex">
+      <div className="min-h-screen w-0 bg-blue-500 md:w-1/2">
         <div className="flex justify-center mt-16">
         <svg
           width="245"
@@ -51,8 +51,8 @@ const Login = () => {
           <label>AI investment advisory for GenZ</label>
         </div>
       </div>
-      <div className="min-h-screen w-1/2 bg-black">
-        <div className="text-6xl font-sans font-semibold text-center mt-16 pt-4">
+      <div className="flex flex-col  items-center min-h-screen w-full md:w-1/2 bg-black">
+        <div className="text-4xl font-sans font-semibold text-center mt-16 pt-4 sm:text-6xl">
           <label>Welcome!</label>
         </div>
         <form onSubmit={handleSubmit} method="POST">
@@ -63,10 +63,10 @@ const Login = () => {
               type="email"
               autoComplete="email"
               required
-              className="bg-black block w-1/3 py-1.5 px-3 mt-9 border-b-2 sm:text-sm"
+              className="bg-black block w-1/3 py-1.5 px-3 mt-9 border-b-2 sm:text-sm w-max"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Please enter your email here"
+              placeholder="Please enter your email"
             />
           </div>
           <div className=" flex justify-center">
@@ -76,7 +76,7 @@ const Login = () => {
               type="password"
               autoComplete="password"
               required
-              className="bg-black block w-1/3 border-b-2 py-1.5 px-3 mt-6 sm:text-sm"
+              className="bg-black block w-1/3 border-b-2 py-1.5 px-3 mt-6 sm:text-sm w-max"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
@@ -93,7 +93,7 @@ const Login = () => {
           <div className="flex justify-center font-size-sm font-light mt-2">
             <p>Forgot Password?</p>
           </div>
-          <div class="flex items-center mt-6 w-1/4 mx-[37.5%]">
+          <div class="flex w-full items-center mt-6">
             <div class="flex-grow border-b border-gray-400"></div>
             <div class="px-4 text-gray-600">OR</div>
             <div class="flex-grow border-b border-gray-400"></div>
