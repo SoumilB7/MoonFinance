@@ -48,7 +48,7 @@ export default function About() {
           <h1 className="text-4xl font-poppins font-bold text-center md:text-7xl">
             People
           </h1>
-          <div className="grid grid-cols-2 pl-10 pt-10 md:flex justify-evenly">
+          <div className="grid grid-cols-2 pl-10 pt-10 sm:flex justify-evenly">
             <Picture src="/shrey.svg" text1="Shrey Baldev" text2="CEO & Founder"/>
             <Picture src="/Soumilb.svg" text1="Soumil Binhani" text2="CTO"/>
           </div>
