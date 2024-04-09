@@ -55,7 +55,7 @@
     border-width: 2px;
   }
   
-  label::after {
+  .accordion label::after {
     width: 57px;
     height: 57px;
     content: '+';
