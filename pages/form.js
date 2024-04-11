@@ -82,7 +82,7 @@ function InvestmentSurveyForm() {
         const finalCalculation = [risk_score, diversity_score, stability_score];
         router.push({
           pathname: '/dashboard',
-          query: { finalCalculation }
+          query: { finalCalculation },
         });
       }
     }
@@ -94,46 +94,46 @@ function InvestmentSurveyForm() {
 
     return (
       <>
-      <Navbar/>
-      <div className="bg-gray-800 h-full flex flex-col justify-center items-center">
-        <div className="w-[75%] h-[87vh] bg-gray-800 rounded-lg p-6">
-          <div>
-            <h2 className="text-2xl text-white font-medium mb-8">
-              QUESTION {currentQuestion + 1}/{questions.length}
-            </h2>
-            <h3 className="text-4xl text-white font-medium mb-6">{question.question}</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 gap-4">
-                {question.options.map((option, index) => (
-                  <button key={index} type="button" onClick={() => handleOptionChange(index)} className={`bg-gray-700 text-white text-xl font-medium py-2 px-2 w-auto rounded ${answers[currentQuestion + 1] === index + 1 ? 'bg-blue-500 hover:bg-blue-600' : ''}`}>
-                    {option.split('\n').map((line, i) => (
-                      <React.Fragment key={i}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                    ))}
-                  </button>
+        <Navbar />
+        <div className="bg-gray-800 h-full flex flex-col justify-center items-center">
+          <div className="w-full sm:w-2/3 md:w-3/4 lg:w-4/5 xl:w-4/5 h-[87vh] bg-gray-800 rounded-lg p-6">
+            <div>
+              <h2 className="text-sm sm:text-base md:text-lg lg:text-xl text-white font-medium mb-8">
+                QUESTION {currentQuestion + 1}/{questions.length}
+              </h2>
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium mb-6">{question.question}</h3>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 gap-4">
+                  {question.options.map((option, index) => (
+                    <button key={index} type="button" onClick={() => handleOptionChange(index)} className={`bg-gray-700 text-sm sm:text-base md:text-lg lg:text-xl text-white font-medium py-2 px-2 w-full rounded ${answers[currentQuestion + 1] === index + 1 ? 'bg-blue-500 hover:bg-blue-600' : ''}`}>
+                      {option.split('\n').map((line, i) => (
+                        <React.Fragment key={i}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))}
+                    </button>
+                  ))}
+                </div>
+              </form>
+            </div>
+            <div className="flex justify-between items-center mt-10">
+              <button type="button" onClick={() => setCurrentQuestion(currentQuestion > 0 ? currentQuestion - 1 : 0)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">
+                Back
+              </button>
+              <button type="submit" disabled={!answers[currentQuestion + 1]} onClick={handleSubmit} className={`px-4 py-2 rounded text-white ${!answers[currentQuestion + 1] ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 font-semibold'}`}>
+                {currentQuestion === questions.length - 1 ? 'Submit' : 'Next'}
+              </button>
+            </div>
+            <div className="flex justify-center">
+              <div className="flex space-x-2">
+                {Array.from({ length: questions.length }, (_, i) => (
+                  <div key={i} className={`w-2 h-2 rounded-full ${i === currentQuestion ? 'bg-white' : 'bg-gray-500'}`}></div>
                 ))}
               </div>
-            </form>
-          </div>
-          <div className="flex justify-between items-center mt-10">
-            <button type="button" onClick={() => setCurrentQuestion(currentQuestion > 0 ? currentQuestion - 1 : 0)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">
-              Back
-            </button>
-            <button type="submit" disabled={!answers[currentQuestion + 1]} onClick={handleSubmit} className={`px-4 py-2 rounded text-white ${!answers[currentQuestion + 1] ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 font-semibold'}`}>
-              {currentQuestion === questions.length - 1 ? 'Submit' : 'Next'}
-            </button>
-          </div>
-          <div className="flex justify-center">
-            <div className="flex space-x-2">
-              {Array.from({ length: questions.length }, (_, i) => (
-                <div key={i} className={`w-2 h-2 rounded-full ${i === currentQuestion ? 'bg-white' : 'bg-gray-500'}`}></div>
-              ))}
             </div>
           </div>
         </div>
-      </div>
       </>
     );
   };
