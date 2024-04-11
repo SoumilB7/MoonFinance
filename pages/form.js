@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import '../app/globals.css';
 import Navbar from '@/components/Navbar';
 
@@ -49,7 +50,8 @@ const questions = [
   },
 ];
 
-function InvestmentSurveyForm(props) {
+function InvestmentSurveyForm() {
+  const router = useRouter();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   var risk_score = 0;
@@ -78,7 +80,10 @@ function InvestmentSurveyForm(props) {
       stability_score = calculate[0] * 0.1 + calculate[1] * 0.1 + calculate[5] * 0.2 + calculate[6] * 0.15 + calculate[7] * 0.15 + calculate[4] * 0.4;
       if (risk_score !== null && diversity_score !== null && stability_score !== null) {
         const finalCalculation = [risk_score, diversity_score, stability_score];
-        props.setCalculate(finalCalculation);
+        router.push({
+          pathname: '/dashboard',
+          query: { finalCalculation }
+        });
       }
     }
   };

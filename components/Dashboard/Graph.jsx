@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Chart } from 'chart.js/auto';
 
-const Graph = ({ risk, diversity, stability }) => {
+const Graph = ({ finalCalculation }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const Graph = ({ risk, diversity, stability }) => {
         labels: ['Risk', 'Diversity', 'Stability'],
         datasets: [{
           label: 'Portfolio',
-          data: [1, 10, 50],
+          data: finalCalculation,
           backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light green fill
           borderColor: 'rgba(255, 99, 132, 1)',  // Green border
           pointRadius: 5,
@@ -60,7 +60,7 @@ const Graph = ({ risk, diversity, stability }) => {
         myChart.destroy(); // Clean up chart instance on component unmount
       }
     };
-  }, [risk, diversity, stability]);
+  }, [finalCalculation]);
 
   return <canvas ref={chartRef} width={400} height={400} />; // Adjust width/height as needed
 };

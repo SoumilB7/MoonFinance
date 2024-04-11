@@ -1,17 +1,18 @@
-import React from "react";
-import Dashboard from "@/components/Dashboard/Dashboard";
-import Navbar from "@/components/Navbar";
-import Graph from "@/components/Dashboard/Graph";
-import Navbarf from '@/components/Navbarf'
-import "../app/globals.css";
-import Footer from "@/components/Footer";
-const dashboard = () => {
+import { useRouter } from 'next/router';
+import Navbarf from '../components/Navbarf';
+import Dashboard from '../components/Dashboard/Dashboard';
+import "../app/globals.css"
+
+const DashboardPage = () => {
+  const router = useRouter();
+  const { finalCalculation } = router.query;
+
   return (
     <>
-        <Navbarf/>
-        <Dashboard />
+      <Navbarf/>
+      <Dashboard finalCalculation={finalCalculation} />
     </>
   );
 };
 
-export default dashboard;
+export default DashboardPage;
