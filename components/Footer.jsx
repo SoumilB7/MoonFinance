@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import footerLogo from '../public/footerlogo.svg'
 import phonecall from '../public/phoneCall.svg'
 import footermail from '../public/footermail.svg'
@@ -14,7 +15,7 @@ export default function Footer() {
       <footer id="contactus" className="px-4 py-8 md:px-8 lg:px-16">
         <div className="footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
           <div className="first flex flex-col items-start">
-            <a href="/"><Image src={footerLogo} alt="Moon Finance Logo"/></a>
+            <Link href="/"><Image src={footerLogo} alt="Moon Finance Logo"/></Link>
             <h3 className="mt-4 flex items-center"><Image src={phonecall} alt='phone'/>+916353332891</h3>
             <h3 className="mt-4 flex items-center"><Image src={footermail} alt='email'/>shrey.moonfinance@gmail.com</h3>
           </div>

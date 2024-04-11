@@ -92,8 +92,8 @@ const Dashboard = ({ finalCalculation }) => {
         <div className="md:-mt-[8%] relative">
           <div className="px-[18%] pt-[10%] text-5xl text-nowrap font-semibold sm:px-0 sm:pb-6 md:pl-10 md:pb-10 font-poppins">Your Basket</div>
           <div className="">
-            <Image src={dash} className="pt-8 blur-sm md:w-full md:blur-lg"></Image>
-            <Image src={overlap} className=" -mt-[60%] mx-[15%] sm:-mt-[50%] sm:mx-[30%] md:-mt-[50%] md:mx-30 absolute lg:mx-[30%] lg:w-[600px] lg:h-[600px] lg:-mt-[50%] h-[200px]"></Image>
+            <Image src={dash} className="pt-8 blur-sm md:w-full md:blur-lg" alt='dash'></Image>
+            <Image src={overlap} alt='overlap' className=" -mt-[60%] mx-[15%] sm:-mt-[50%] sm:mx-[30%] md:-mt-[50%] md:mx-30 absolute lg:mx-[30%] lg:w-[600px] lg:h-[600px] lg:-mt-[50%] h-[200px]"></Image>
           </div>
           <button className="bg-blue-500 font-poppins absolute w-[100px] h-[30px] rounded-lg mx-[37%] -mt-[29%] sm:mx-[37%] md:mx-[36%] md:-mt-[20%] lg:-mt-[23%] lg:mx-[40%] lg:w-[300px] lg:h-[70px] lg:text-3xl hover:bg-blue-700">Invest</button>
         </div>
