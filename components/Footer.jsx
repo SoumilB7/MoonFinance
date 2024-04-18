@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <>
       <hr />
-      <footer id="contactus" className="px-4 py-8 md:px-8 lg:px-16">
+      <footer id="contactus" className="px-4 py-8 md:px-8 lg:px-16 text-white">
         <div className="footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
           <div className="first flex flex-col items-start">
             <Link href="/"><Image src={footerLogo} alt="Moon Finance Logo"/></Link>

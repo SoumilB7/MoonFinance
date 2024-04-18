@@ -122,7 +122,7 @@ const Navbar = () => {
         </div>
     </div>
           <Link
-            className=" hover:border-white hover:rounded-md hover:border-transparent hover:outline hover:outline-2 text-xl lg:flex mx-2 p-2 hidden"
+            className=" hover:border-white hover:rounded-md text-white hover:border-transparent hover:outline hover:outline-2 text-xl lg:flex mx-2 p-2 hidden"
             href="/"
           >
             <Image
