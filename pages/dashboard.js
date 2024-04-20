@@ -1,10 +1,10 @@
-import Dashboard from "@/components/Dashboard/Dashboard";
+import Dashboardf from "@/components/Dashboard/Dashboard";
 import Head from "next/head";
 import React from "react";
 import Navbar from "@/components/Navbarf";
 import "../app/globals.css";
 import { useRouter } from "next/router";
-const dashboard = () => {
+const Dashboard = () => {
   const router = useRouter();
   const { finalCalculation } = router.query;
   return (
@@ -13,8 +13,8 @@ const dashboard = () => {
         <link rel="icon" href="/logo.png" />
       </Head>
       <Navbar />
-      <Dashboard finalCalculation={finalCalculation} />
+      <Dashboardf finalCalculation={finalCalculation} />
     </>
   );
 };
-export default dashboard;
+export default Dashboard;
