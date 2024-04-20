@@ -62,7 +62,7 @@ const Graph = ({ finalCalculation }) => {
     };
   }, [finalCalculation]);
 
-  return <canvas ref={chartRef} width={400} height={400} />; // Adjust width/height as needed
+  return <canvas ref={chartRef} width={200} height={200} />; // Adjust width/height as needed
 };
 
 export default Graph;
