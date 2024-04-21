@@ -159,7 +159,7 @@ const Login = () => {
           </div>
           <div className="flex justify-center mt-4">
             <p>
-              Don't you have an account?{" "}
+              Don&apos;t you have an account?{" "}
               <span className="text-blue-400">Sign up</span>
             </p>
           </div>
