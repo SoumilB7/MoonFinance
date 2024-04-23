@@ -2,12 +2,38 @@ import React from 'react';
 import '../app/globals.css';
 import { useState } from 'react';
 import { apple } from '@/public/apple.svg';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleSubmit = (e) => {
+  const router = useRouter();
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch('/api/routes/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        // If login is successful, you can redirect the user to another page
+        // For example, redirect to dashboard
+        router.push('/dashboard')
+      } else {
+        // If login fails, show an error message
+        const data = await response.json();
+        alert(data.message); // Display error message
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert('An error occurred while logging in. Please try again.'); // Display generic error message
+    }
   };
 
   return (
@@ -38,10 +64,10 @@ const Login = () => {
         </div>
         <form onSubmit={handleSubmit} method="POST">
           <div className="mt-2 flex justify-center">
-            <input id="email" name="email" type="email" autoComplete="email" required className="bg-black block w-1/3 py-1.5 px-3 mt-9 border-b-2 sm:text-sm w-max" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Please enter your email" />
+            <input id="email" name="email" type="email" autoComplete="email" required className="bg-black text-white block py-1.5 px-3 mt-9 border-b-2 sm:text-sm w-max" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Please enter your email" />
           </div>
           <div className=" flex justify-center">
-            <input id="password" name="password" type="password" autoComplete="password" required className="bg-black block w-1/3 border-b-2 py-1.5 px-3 mt-6 sm:text-sm w-max" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+            <input id="password" name="password" type="password" autoComplete="password" required className="bg-black text-white block border-b-2 py-1.5 px-3 mt-6 sm:text-sm w-max" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
           </div>
           <div className="flex justify-center">
             <button type="submit" className="inline-flex justify-center py-2 px-12 mt-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
@@ -98,8 +124,8 @@ const Login = () => {
             </button>
           </div>
           <div className="flex justify-center mt-4">
-            <p>
-              Don&apos;t you have an account? <span className="text-blue-400">Sign up</span>
+            <p className='text-white'>
+              Don&apos;t you have an account? <Link className="text-blue-400" href='/Signup'>Sign up</Link>
             </p>
           </div>
         </form>

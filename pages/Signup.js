@@ -2,12 +2,11 @@ import React from 'react';
 import '../app/globals.css';
 import { useState } from 'react';
 import { apple } from '@/public/apple.svg';
+import { useRouter } from 'next/navigation';
 
 const Signup = () => {
   const [isOpen, setIsOpen] = useState(true)
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const  router = useRouter();
   const [formState, setFormState] = useState({
     username: '',
     password: '',
@@ -19,6 +18,38 @@ const Signup = () => {
       ...formState,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('/api/routes/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          name: formState.username,  
+          email: formState.email, 
+          password: formState.password, 
+          mobileNumber: formState.phone 
+         }),
+      });
+
+      if (response.ok) {
+        // If login is successful, you can redirect the user to another page
+        // For example, redirect to dashboard
+        router.push('/form')
+      } else {
+        // If login fails, show an error message
+        const data = await response.json();
+        alert(data.message); // Display error message
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert('An error occurred while logging in. Please try again.'); // Display generic error message
+    }
   };
 
   return (
@@ -53,30 +84,30 @@ const Signup = () => {
               <label htmlFor="username" className="sr-only">
                 Username
               </label>
-              <input id="username" name="username" type="text" autoComplete="username" required className="bg-black block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm" placeholder="Username" value={formState.username} onChange={handleInputChange} />
+              <input id="username" name="username" type="text" autoComplete="username" required className="bg-black text-white block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm" placeholder="Username" value={formState.username} onChange={handleInputChange} />
             </div>
             <div className="flex justify-center mt-4">
               <label htmlFor="phone" className="sr-only">
                 Phone number
               </label>
-              <input id="phone" name="phone" type="tel" autoComplete="tel" required className="bg-black block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm" placeholder="Phone number" value={formState.phone} onChange={handleInputChange} />
+              <input id="phone" name="phone" type="tel" autoComplete="tel" required className="bg-black text-white block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm" placeholder="Phone number" value={formState.phone} onChange={handleInputChange} />
             </div>
             <div className="flex justify-center mt-4">
               <label htmlFor="email" className="sr-only">
                 Email address
               </label>
-              <input id="email" name="email" type="email" autoComplete="email" required className="bg-black block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm" placeholder="Email address" value={formState.email} onChange={handleInputChange} />
+              <input id="email" name="email" type="email" autoComplete="email" required className="bg-black text-white block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm" placeholder="Email address" value={formState.email} onChange={handleInputChange} />
             </div>
             <div className="flex justify-center mt-4">
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
-              <input id="password" name="password" type="password" autoComplete="current-password" required className="bg-black block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm" placeholder="Password" value={formState.password} onChange={handleInputChange} />
+              <input id="password" name="password" type="password" autoComplete="current-password" required className="bg-black text-white block w-7/8 py-1.5 px-3 mt-9 border-2 sm:text-sm" placeholder="Password" value={formState.password} onChange={handleInputChange} />
             </div>
           </div>
         </form>
         <div className="flex justify-center pt-6">
-          <button type="submit" className="inline-flex justify-center py-2 px-12 mt-6 border border-transparent shadow-sm text-sm font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
+          <button type="submit" onClick={handleSubmit} className="inline-flex justify-center py-2 px-12 mt-6 border border-transparent shadow-sm text-sm font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300">
             CREATE ACCOUNT
           </button>
         </div>
@@ -113,7 +144,7 @@ const Signup = () => {
             </button>
             <label>Sign up with Google</label>
           </div>
-          <button onClick={() => setIsOpen(!isOpen)} className="ml-12 mt-4">
+          <button onClick={() => {setIsOpen(!isOpen);router.push('/Login')}} className="ml-12 mt-4">
             <svg width="80" height="30" viewBox="0 0 122 41" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M16.2353 11.8235V7.41176C16.2353 6.24169 16.7001 5.11954 17.5275 4.29218C18.3548 3.46481 19.477 3 20.6471 3H36.0882C37.2583 3 38.3805 3.46481 39.2078 4.29218C40.0352 5.11954 40.5 6.24169 40.5 7.41176V33.8824C40.5 35.0524 40.0352 36.1746 39.2078 37.0019C38.3805 37.8293 37.2583 38.2941 36.0882 38.2941H20.6471C19.477 38.2941 18.3548 37.8293 17.5275 37.0019C16.7001 36.1746 16.2353 35.0524 16.2353 33.8824V29.4706"
