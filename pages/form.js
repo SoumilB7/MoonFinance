@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 const questions = [
   {
     question: 'How much investing experience do you have?',
-    options: ['Very Experienced', 'Somewhat inexperienced', 'Somewhat experienced', 'Experienced', 'Very experienced'],
+    options: ['Very inexperienced', 'Somewhat inexperienced', 'Somewhat experienced', 'Experienced', 'Very experienced'],
   },
 
   {
