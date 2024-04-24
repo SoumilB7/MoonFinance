@@ -27,7 +27,7 @@ const Faq = () => {
         </li>
         <li>
           <input type="checkbox" name="accordion" id="third" />
-          <label for="third">How is my money investment?</label>
+          <label for="third">How is my money invested?</label>
           <div class="content">
             <p>The money is invested through your broker.</p>
           </div>
