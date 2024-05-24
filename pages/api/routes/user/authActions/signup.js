@@ -1,19 +1,16 @@
-
 import ConnectToDB from "@/server/config/connect.db";
 import Users from "@/server/model/users.model";
 import bcrypt from "bcrypt";
-
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ message: "Method not allowed" });
     return;
   } else {
-    
     try {
       await ConnectToDB();
-      
-      const { name, email, password, mobileNumber } = await req.body;
+
+      const { name, email, password, mobileNumber, userUid } = await req.body;
       const saltRounds = 10;
       const existingUser = await Users.findOne({ email });
       if (existingUser) {
@@ -27,6 +24,7 @@ export default async function handler(req, res) {
         email,
         mobileNumber,
         password: hashedPassword,
+        userUid,
       });
       await newUser.save();
 
