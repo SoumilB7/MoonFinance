@@ -24,7 +24,7 @@ const Home = () => {
       }
       console.log("User UID: ", userUid);
       const response = await axios.get(
-        `http://localhost:3000/api/routes/userResponses/get/byUserId/${userUid}`
+        `/api/routes/userResponses/get/byUserId/${userUid}`
       );
       console.log("Response: ");
       console.log(response);
