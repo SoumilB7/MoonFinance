@@ -12,9 +12,10 @@ const firebaseConfig = {
   projectId: "moonfinance-nayan",
   storageBucket: "moonfinance-nayan.appspot.com",
   messagingSenderId: "521711030617",
-  appId: "1:521711030617:web:eef334a44675345741bc48",
-  measurementId: "G-FZKFNHVK9Y",
+  appId: "1:521711030617:web:d74816a05c9adf0f41bc48",
+  measurementId: "G-TE0XCJV7DL"
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
