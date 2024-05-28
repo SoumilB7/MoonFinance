@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { optimizeImage } from "next/dist/server/image-optimizer";
 
 const userSchema = new mongoose.Schema(
   {
@@ -16,11 +17,10 @@ const userSchema = new mongoose.Schema(
     },
     mobileNumber: {
       type: String,
-      required: true,
     },
     password: {
       type: String,
-      required: true,
+      optional: true,
     },
     userUid: {
       type: String,

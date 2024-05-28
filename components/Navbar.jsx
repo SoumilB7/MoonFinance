@@ -136,7 +136,7 @@ const Navbar = () => {
             {isAuth != "false" ? (
               <div>
                 <div className="block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">
-                  Welcome {`${userData.name}`}
+                  Welcome {`${userData?.name}`}
                 </div>
 
                 <button
@@ -196,7 +196,7 @@ const Navbar = () => {
             <div className="space-x-2 flex ">
               <div>
                 <div className="block w-full  text-white font-bold py-2 px-4 rounded mt-2">
-                  Welcome {`${userData.name}`}
+                  Welcome {`${userData?.name}`}
                 </div>
               </div>
               <button

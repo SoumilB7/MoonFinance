@@ -10,14 +10,18 @@ export default async function handler(req, res) {
     try {
       await ConnectToDB();
 
-      const { name, email, password, mobileNumber, userUid } = await req.body;
+      const { name, email, password, mobileNumber, userUid, authType } =
+        await req.body;
       const saltRounds = 10;
       const existingUser = await Users.findOne({ email });
-      if (existingUser) {
-        return res.status(400).json({ message: "User already exists" });
-      }
+      let hashedPassword = "";
+      if (authType == "") {
+        if (existingUser) {
+          return res.status(400).json({ message: "User already exists" });
+        }
 
-      const hashedPassword = await bcrypt.hash(password, saltRounds);
+        hashedPassword = await bcrypt.hash(password, saltRounds);
+      }
 
       const newUser = new Users({
         name,

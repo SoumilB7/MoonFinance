@@ -7,9 +7,12 @@ import Link from "next/link";
 import { app } from "../firebase/firebase-config";
 import { setCookie } from "cookies-next";
 import {
+  getAdditionalUserInfo,
   getAuth,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 
 const Login = () => {
@@ -63,7 +66,83 @@ const Login = () => {
       console.log(error);
     }
   };
+  // --- HANDLE NEW USER ---
+  const handleNewUser = async (
+    userName,
+    userEmail,
+    userPassword,
+    userUid,
+    authType = ""
+  ) => {
+    try {
+      const response = await fetch("/api/routes/user/authActions/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: userName,
+          email: userEmail,
+          password: userPassword,
+          mobileNumber: -1,
+          userUid: userUid,
+          authType: authType,
+        }),
+      });
+      router.push("/");
+    } catch (error) {
+      console.error("Error logging in:", error);
+      alert("An error occurred while logging in. Please try again.");
+    }
+  };
 
+  //--HANDLE OLD USER--
+  const handleOldUser = async () => {
+    router.push("/");
+  };
+  // --- GOOGLE LOGIN ---
+  const provider = new GoogleAuthProvider();
+
+  const loginWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log("triggerd");
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const tokens = credential.accessToken;
+
+        const user = result.user;
+
+        const additionalInfo = getAdditionalUserInfo(result);
+        console.log("additional info");
+        console.log(additionalInfo);
+        console.log("user");
+        console.log(user);
+        console.log("credential");
+        console.log(credential);
+        console.log("tokens");
+        console.log(tokens);
+        if (additionalInfo.isNewUser) {
+          handleNewUser(
+            additionalInfo.profile.name,
+            additionalInfo.profile.email,
+            null,
+            user.uid,
+            "google"
+          );
+        } else {
+          console.log("welcome back " + additionalInfo.profile.name);
+          handleOldUser();
+        }
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // const email = error.customData.email;
+        // const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(error);
+      });
+  };
   return (
     <div className="flex">
       <div className="min-h-screen w-0 bg-blue-500 md:w-1/2">
@@ -156,10 +235,7 @@ const Login = () => {
             <p>Continue with</p>
           </div>
           <div className="flex justify-center mt-2">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-block ml-3"
-            >
+            <button onClick={loginWithGoogle} className="inline-block ml-3">
               <svg
                 width="20"
                 height="20"
@@ -196,7 +272,7 @@ const Login = () => {
                 </defs>
               </svg>
             </button>
-            <button onClick={() => setIsOpen(!isOpen)} className="ml-3">
+            <button className="ml-3">
               <svg
                 width="20"
                 height="20"
