@@ -1,11 +1,11 @@
 export const calcRisk = (userResponse) => {
   const risk_score =
-    userResponse.Q1 * 0.15 +
-    userResponse.Q2 * 0.1 +
-    userResponse.Q3 * 0.3 +
-    userResponse.Q5 * 0.15 +
-    userResponse.Q6 * 0.12 +
-    userResponse.Q7 * 0.05 +
-    userResponse.Q8 * 0.08;
+    userResponse["1"] * 0.15 +
+    userResponse["2"] * 0.1 +
+    userResponse["3"] * 0.3 +
+    userResponse["5"] * 0.15 +
+    userResponse["6"] * 0.12 +
+    userResponse["7"] * 0.05 +
+    userResponse["8"] * 0.08;
   return parseFloat(risk_score.toFixed(4));
 };
