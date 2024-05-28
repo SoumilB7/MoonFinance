@@ -48,6 +48,7 @@ const Navbar = () => {
         setCookie("auth", "false");
         setAuth("false");
         console.log("sign out donee");
+        router.push({ path: "/" });
       })
       .catch((error) => {
         // An error happened.
