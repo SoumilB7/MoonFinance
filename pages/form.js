@@ -142,7 +142,7 @@ function InvestmentSurveyForm() {
         return;
       }
 
-      const URL = "http://localhost:3000/api/routes/userResponses/post/add";
+      const URL = "/api/routes/userResponses/post/add";
       const response = await axios.post(URL, {
         userId: userUid,
         questions: answers,

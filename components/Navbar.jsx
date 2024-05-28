@@ -16,8 +16,13 @@ const Navbar = () => {
   const userToken = getCookie("userToken");
   const userUid = getCookie("userUid");
   const router = useRouter();
+  const origin =
+    typeof window !== "undefined" && window.location.origin
+      ? window.location.origin
+      : "";
+  console.log("origin");
+  const BASEURL = origin;
 
-  console.log();
   const [isAuth, setAuth] = useState("false");
 
   const [userData, setUserData] = useState("");
@@ -29,7 +34,7 @@ const Navbar = () => {
     if (isAuth == "false") return;
     const action = async () => {
       const response = await axios.get(
-        `http://localhost:3000/api/routes/user/get/byuid/${userUid}`
+        `${BASEURL}/api/routes/user/get/byuid/${userUid}`
       );
       console.log(response);
       setUserData(response.data[0]);
@@ -56,6 +61,7 @@ const Navbar = () => {
         console.log(error);
       });
   };
+
   return (
     <div className="flex bg-black justify-between items-center p-2 mx-2 border-b-2 border-b-[##FFFFFF] border-solid">
       <div>
