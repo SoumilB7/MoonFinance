@@ -40,13 +40,13 @@ export default function LoginButton() {
     }
   };
 
-  const login = async () => {
+  const Login = async () => {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
       await handleUser(result.user);
     } catch (error) {
-      console.error('Error during login:', error);
+      console.error('Error during Login:', error);
     }
   };
 
@@ -57,5 +57,5 @@ export default function LoginButton() {
   if (user) {
     return <button onClick={() => signOut(auth)}>Logout {user.email}</button>;
   }
-  return <button onClick={login}>Login with Google</button>;
+  return <button onClick={Login}>Login with Google</button>;
 }

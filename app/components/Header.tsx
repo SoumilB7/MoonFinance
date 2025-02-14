@@ -117,7 +117,7 @@
 //             </li>
 //             <li>
 //               <Link
-//                 href="/login"
+//                 href="/Login"
 //                 className="block px-4 py-2 border rounded-full border-black text-black hover:bg-gray-100 transition"
 //               >
 //                 Log in
@@ -125,7 +125,7 @@
 //             </li>
 //             <li>
 //               <Link
-//                 href="/signup"
+//                 href="/Signup"
 //                 className="block px-4 py-2 border rounded-full border-black text-black hover:bg-gray-100 transition"
 //               >
 //                 Sign up
@@ -138,13 +138,13 @@
 //       {/* Desktop Action Buttons */}
 //       <div className="hidden lg:flex space-x-2">
 //         <Link
-//           href="/login"
+//           href="/Login"
 //           className="px-4 py-2 border rounded-full border-black text-black hover:bg-gray-100 transition"
 //         >
 //           Log in
 //         </Link>
 //         <Link
-//           href="/signup"
+//           href="/Signup"
 //           className="px-4 py-2 border rounded-full border-black text-black hover:bg-gray-100 transition"
 //         >
 //           Sign up
@@ -306,7 +306,7 @@ const Header: React.FC = () => {
               <>
                 <li>
                   <Link
-                    href="/login"
+                    href="/Login"
                     className="block px-4 py-2 border rounded-full border-black text-black hover:bg-gray-100 transition"
                   >
                     Log in
@@ -314,7 +314,7 @@ const Header: React.FC = () => {
                 </li>
                 <li>
                   <Link
-                    href="/signup"
+                    href="/Signup"
                     className="block px-4 py-2 border rounded-full border-black text-black hover:bg-gray-100 transition"
                   >
                     Sign up
@@ -347,13 +347,13 @@ const Header: React.FC = () => {
       ) : (
         <div className="hidden lg:flex space-x-2">
           <Link
-            href="/login"
+            href="/Login"
             className="px-4 py-2 border rounded-full border-black text-black hover:bg-gray-100 transition"
           >
             Log in
           </Link>
           <Link
-            href="/signup"
+            href="/Signup"
             className="px-4 py-2 border rounded-full border-black text-black hover:bg-gray-100 transition"
           >
             Sign up

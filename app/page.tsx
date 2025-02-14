@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 
 import Home from "./home/page";
-import LoginPage from "./login/page";
-import SignUpPage from "./signup/page";
+import LoginPage from "./Login/page";
+import SignupPage from "./Signup/page";
 import AboutUs from "./about/page";
 
 const App = () => {
@@ -25,10 +25,10 @@ const App = () => {
   }, [route]);
 
   switch (route) {
-    case "/login":
+    case "/Login":
       return <LoginPage />;
-    case "/signup":
-      return <SignUpPage />;
+    case "/Signup":
+      return <SignupPage />;
     case "/aboutus":
       return <AboutUs />;
     case "/home":

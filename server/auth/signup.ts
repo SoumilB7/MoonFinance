@@ -11,7 +11,7 @@ interface SignupData {
   phone: string;
 }
 
-export async function signup(data: SignupData) {
+export async function Signup(data: SignupData) {
   console.log(data);
   const { username, email, password, phone } = data;
   const name = username;

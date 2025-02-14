@@ -8,7 +8,7 @@ interface LoginData{
     password:string,
 }
 
-export async function login (data: LoginData){
+export async function Login (data: LoginData){
 
     try {
         //console.log(data);
