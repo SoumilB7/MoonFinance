@@ -1,22 +1,22 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { Signup } from "@/server/auth/Signup";
+import { signup } from "@/server/auth/signup";
 import { useRouter } from "next/navigation";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/app/lib/firebase";
 import { useAuth } from "@/app/components/AuthProvider";
 import { IUser } from "@/server/model/users.model";
 
-const SignupPage: React.FC = () => {
+const SignUpPage: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
   const { setUser } = useAuth(); // Access the AuthContext to set the user state
 
-  // Handle manual Signup
-  const handleSignup = async (e: React.FormEvent) => {
+  // Handle manual signup
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -36,10 +36,10 @@ const SignupPage: React.FC = () => {
       }
 
       try {
-        const user = await Signup({ username, phone, email, password });
+        const user = await signup({ username, phone, email, password });
         if (user) {
           // Optionally update the user in AuthContext
-          setUser(user as IUser); // Assuming `Signup` returns user details
+          setUser(user as IUser); // Assuming `signup` returns user details
 
           // Redirect to homepage
           router.push("/home");
@@ -52,7 +52,7 @@ const SignupPage: React.FC = () => {
     }
   };
 
-  // Handle Google Login
+  // Handle Google login
   const handleGoogleLogin = async () => {
     setLoading(true);
     setError("");
@@ -83,8 +83,8 @@ const SignupPage: React.FC = () => {
       setUser(data.user as IUser); // Update the AuthContext with the user
       router.push("/home"); // Redirect to homepage
     } catch (err: any) {
-      console.error("Error during Google Login:", err);
-      setError("Google Login failed. Please try again.");
+      console.error("Error during Google login:", err);
+      setError("Google login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -96,7 +96,7 @@ const SignupPage: React.FC = () => {
         <div className="w-full md:w-1/2 h-full">
           <div className="w-full h-full relative">
             <Image
-              src="https://res.cloudinary.com/dhrvr4sey/image/upload/v1726863366/Signup_d575io.png"
+              src="https://res.cloudinary.com/dhrvr4sey/image/upload/v1726863366/signup_d575io.png"
               alt="Sign up illustration"
               layout="fill"
               objectFit="cover"
@@ -109,7 +109,7 @@ const SignupPage: React.FC = () => {
             <h1 className="text-5xl font-bold mb-8" style={{ color: "#12C38C" }}>
               Sign up
             </h1>
-            <form ref={formRef} onSubmit={handleSignup} className="text-black">
+            <form ref={formRef} onSubmit={handleSignUp} className="text-black">
               <div className="mb-4">
                 <input
                   name="username"
@@ -176,7 +176,7 @@ const SignupPage: React.FC = () => {
             <p className="text-center mt-6 text-black">
               Already have an account?{" "}
               <button
-                onClick={() => router.push("/Login")}
+                onClick={() => router.push("/login")}
                 className="text-[#12C38C] hover:underline"
               >
                 Log in
@@ -189,4 +189,4 @@ const SignupPage: React.FC = () => {
   );
 };
 
-export default SignupPage;
+export default SignUpPage;

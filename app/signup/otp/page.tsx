@@ -1,14 +1,14 @@
 
-// Signup/otp/page.tsx
+// signup/otp/page.tsx
 
 "use client"
-import { useSignup } from "@clerk/nextjs";
+import { useSignUp } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from 'next/image';
 
 export default function PhoneVerification() {
-  const { Signup, isLoaded } = useSignup();
+  const { signUp, isLoaded } = useSignUp();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [code, setCode] = useState("");
   const [verificationStep, setVerificationStep] = useState<"phone" | "code">("phone");
@@ -21,11 +21,11 @@ export default function PhoneVerification() {
     setLoading(true);
     setError("");
     try {
-      if (!Signup) throw new Error("Signup not initialized");
-      await Signup.create({
+      if (!signUp) throw new Error("SignUp not initialized");
+      await signUp.create({
         phoneNumber
       });
-      await Signup.preparePhoneNumberVerification();
+      await signUp.preparePhoneNumberVerification();
       setVerificationStep("code");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to send verification code");
@@ -39,15 +39,15 @@ export default function PhoneVerification() {
     setLoading(true);
     setError("");
     try {
-      if (!Signup) throw new Error("Signup not initialized");
-      const result = await Signup.attemptPhoneNumberVerification({
+      if (!signUp) throw new Error("SignUp not initialized");
+      const result = await signUp.attemptPhoneNumberVerification({
         code,
       });
       if (result.status === "complete") {
-        const completeSignup = await Signup.create({
+        const completeSignUp = await signUp.create({
           phoneNumber
         });
-        if (completeSignup.status === "complete") {
+        if (completeSignUp.status === "complete") {
           router.push("/dash");
         }
       }
@@ -62,8 +62,8 @@ export default function PhoneVerification() {
     setLoading(true);
     setError("");
     try {
-      if (!Signup) throw new Error("Signup not initialized");
-      await Signup.preparePhoneNumberVerification();
+      if (!signUp) throw new Error("SignUp not initialized");
+      await signUp.preparePhoneNumberVerification();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to resend code");
     } finally {
@@ -77,7 +77,7 @@ export default function PhoneVerification() {
         <div className="w-full md:w-1/2 h-full">
           <div className="w-full h-full relative">
             <Image
-              src="https://res.cloudinary.com/dhrvr4sey/image/upload/v1726863366/Signup_d575io.png"
+              src="https://res.cloudinary.com/dhrvr4sey/image/upload/v1726863366/signup_d575io.png"
               alt="Sign up illustration"
               layout="fill"
               objectFit="cover"

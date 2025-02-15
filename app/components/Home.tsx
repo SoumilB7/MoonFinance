@@ -17,7 +17,7 @@ const Home: React.FC = () => {
             investment <span className="text-green-700">advisor</span>
           </h1>
           <button
-            onClick={() => router.push("https://www.notion.so/172ab12bf7f4803bbe61facb5f4e6e6b?pvs=106")}
+            onClick={() => router.push("/quiz")}
             className="bg-[#00D54B] hover:bg-[#00C044] text-black font-bold px-6 py-3 rounded-full text-lg flex items-center justify-center mx-auto lg:mx-0 transition duration-300"
           >
             Start Investing

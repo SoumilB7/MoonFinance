@@ -117,7 +117,7 @@ const LoginPage: React.FC = () => {
               disabled={loading}
               className="w-full bg-[#12C38C] text-white p-3 rounded-lg hover:bg-opacity-90 transition-all disabled:opacity-50"
             >
-              {loading ? 'Loading...' : 'Login'}
+              {loading ? 'Loading...' : 'LOGIN'}
             </button>
           </form>
 
@@ -158,7 +158,7 @@ const LoginPage: React.FC = () => {
 
           <p className="text-center text-black">
             Don&#39;t have an account?{' '}
-            <Link href="/Signup" className="text-[#12C38C] hover:underline">
+            <Link href="/signup" className="text-[#12C38C] hover:underline">
               Sign up
             </Link>
           </p>
@@ -167,7 +167,7 @@ const LoginPage: React.FC = () => {
         <div className="hidden md:flex w-1/2 bg-[#12C38C] items-center justify-center p-8">
           <div className="w-full max-w-xl">
             <Image
-              src="https://res.cloudinary.com/dhrvr4sey/image/upload/v1726865117/Login_kjpjnz.png"
+              src="https://res.cloudinary.com/dhrvr4sey/image/upload/v1726865117/login_kjpjnz.png"
               alt="Business growth illustration"
               width={1024}
               height={512}
