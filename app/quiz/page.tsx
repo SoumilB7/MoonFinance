@@ -66,10 +66,30 @@ const QuizPage: React.FC = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log("Final Submission:", answers);
+    const userUid = localStorage.getItem('userUid');
     const encodedAnswers = encodeURIComponent(JSON.stringify(answers)); // Encode for URL safety
-    router.push(`/distrib?answers=${encodedAnswers}`); // Pass the encoded object
+    const response = await fetch('/api/quiz/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({questions:answers,"userID":userUid}),
+    });
+
+    if(response.ok){
+      const data = await response.json();
+
+    router.push(`/distrib?answers=${encodedAnswers}`);
+    }
+
+    if (!response.ok) {
+      throw new Error('Failed to submit quiz');
+    }
+
+     // Pass the encoded object
+
   };
 
   if (questions.length === 0) {

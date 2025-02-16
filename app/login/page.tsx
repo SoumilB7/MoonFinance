@@ -25,6 +25,7 @@ const LoginPage: React.FC = () => {
       
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        localStorage.setItem("userUid", userCredential.user.uid);
         const response = await fetch('/api/auth/user', {
           method: 'POST',
           headers: {
@@ -57,6 +58,8 @@ const LoginPage: React.FC = () => {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
+
+      localStorage.setItem("userUid", result.user.uid);
       
       const response = await fetch('/api/auth/user', {
         method: 'POST',

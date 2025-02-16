@@ -1,0 +1,50 @@
+import { NextResponse } from 'next/server';
+import connectToDB from '@/server/config/connect.db';
+import UserResponse from '@/server/model/userResponses.model';
+
+export async function POST(request: Request) {
+    console.log('Quiz submission endpoint hit');
+
+    try {
+        console.log('Attempting to connect to DB...');
+        await connectToDB();
+        console.log('DB connection successful');
+
+        const body = await request.json();
+        console.log('Received request body:', body);
+        const userUid = body.userID
+        console.log("Recieved UserId : ",userUid)
+        const duplicateUser = await UserResponse.findOne({ userId: userUid });
+        if (!duplicateUser) {
+            console.log("yahana hua tha")
+            // Create new user response
+            const userResponse = await UserResponse.create({
+                userId: userUid,
+                questions: body.questions,
+            });
+            
+        return NextResponse.json({
+            success: true,
+            userResponse
+        }, { status: 200 });
+        }else{
+            duplicateUser.questions = body.questions;
+            await duplicateUser.save();
+            return NextResponse.json({message:'updated successfully'},{status:200});
+        }
+
+
+
+    } catch (error) {
+        console.log('Error in quiz submission:', error);
+        // Log more details about the error
+        if (error instanceof Error) {
+            console.log('Error message:', error.message);
+            console.log('Error stack:', error.stack);
+        }
+        return NextResponse.json({
+            success: false,
+            error: 'Failed to save quiz response'
+        }, { status: 500 });
+    }
+} 

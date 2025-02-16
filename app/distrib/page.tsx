@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import circle from "../assets/circle.png";
 import AssetBar from "../distrib/AssetBar";
@@ -14,8 +14,10 @@ const SearchParamsHandler: React.FC = () => {
   const searchParams = useSearchParams();
   const [scores, setScores] = useState({ equity: 0, debt: 0, gold: 0 });
   const [investment, setInvestment] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
+    console.log('distrib');
     const answers = searchParams.get("answers");
 
     if (answers) {
@@ -136,7 +138,10 @@ const SearchParamsHandler: React.FC = () => {
                 Lorem ipsum dolor sit amet consectetur. Nec mauris ut id quam netus. Pellentesque sed aliquet tortor auctor dictum sodales leo.
               </p>
               <button className="rounded-lg w-[52%] h-fit bg-[#12C38C] p-4 text-white font-extrabold"
-                onClick={() => (window.location.href = "/quiz")}>
+                onClick={() => {
+                  console.log('click');
+                  router.push('/quiz');
+                }}>
                 Take Quiz Again
               </button>
               <p className="text-sm text-center w-full md:w-[52%]">You can risk analyze before investing.</p>
