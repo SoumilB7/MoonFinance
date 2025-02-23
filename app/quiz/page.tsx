@@ -26,6 +26,18 @@ const QuizPage: React.FC = () => {
   });
   const router = useRouter();
 
+  // Email validation: checks that the email matches a basic regex
+  const isEmailValid = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Phone validation: ensures only digits and a minimum of 10 digits
+  const isPhoneValid = (phone: string): boolean => {
+    const phoneRegex = /^\d{10,}$/;
+    return phoneRegex.test(phone);
+  };
+
   useEffect(() => {
     // Fetch questions from a JSON file or API
     fetch("/data/question.json")
@@ -162,6 +174,11 @@ const QuizPage: React.FC = () => {
               className="p-2 rounded border border-gray-300 w-64 text-black"
               placeholder="Email"
             />
+            {answers.email && !isEmailValid(answers.email as string) && (
+              <p className="text-red-500 text-sm mt-2">
+                Please enter a valid email address.
+              </p>
+            )}
             <div className="flex mt-4 space-x-4">
               <button
                 onClick={handleBackUserDetail}
@@ -171,7 +188,7 @@ const QuizPage: React.FC = () => {
               </button>
               <button
                 onClick={handleNextUserDetail}
-                disabled={!answers.email}
+                disabled={!answers.email || !isEmailValid(answers.email as string)}
                 className="px-6 py-2 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c] disabled:opacity-50"
               >
                 Next
@@ -190,6 +207,11 @@ const QuizPage: React.FC = () => {
               className="p-2 rounded border border-gray-300 w-64 text-black"
               placeholder="Phone Number"
             />
+            {answers.phone && !isPhoneValid(answers.phone as string) && (
+              <p className="text-red-500 text-sm mt-2">
+                Please enter a valid phone number (at least 10 digits).
+              </p>
+            )}
             <div className="flex mt-4 space-x-4">
               <button
                 onClick={handleBackUserDetail}
@@ -199,7 +221,7 @@ const QuizPage: React.FC = () => {
               </button>
               <button
                 onClick={handleNextUserDetail}
-                disabled={!answers.phone}
+                disabled={!answers.phone || !isPhoneValid(answers.phone as string)}
                 className="px-6 py-2 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c] disabled:opacity-50"
               >
                 Start Quiz
@@ -218,7 +240,7 @@ const QuizPage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow flex flex-col items-center justify-center bg-gradient-to-b from-black to-[#03ffc824] text-white px-16">
+      <main className="flex-grow flex flex-col items-center justify-center bg-gradient-to-b from-black to-[#03ffc89b24] text-white px-16">
         {currentQuestionIndex === -1 ? (
           renderUserDetails()
         ) : (
