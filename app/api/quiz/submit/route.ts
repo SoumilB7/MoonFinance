@@ -12,7 +12,8 @@ export async function POST(request: Request) {
 
         const body = await request.json();
         console.log('Received request body:', body);
-        const userUid = body.userID
+        const userUid = body.questions.email
+
         console.log("Recieved UserId : ",userUid)
         const duplicateUser = await UserResponse.findOne({ userId: userUid });
         if (!duplicateUser) {

@@ -10,13 +10,20 @@ interface Question {
 }
 
 interface Answers {
-  [key: string]: number | string; // questionId -> selectedOption (number) or investment amount (string)
+  [key: string]: number | string; // questionId -> selectedOption (number) or other string values (investment, email, phone)
 }
 
 const QuizPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(-1); // Start at -1 for investment input
-  const [answers, setAnswers] = useState<Answers>({ investment: "" }); // Initialize with investment key
+  // currentQuestionIndex remains -1 until the user details steps are complete
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(-1);
+  // New state to track which user detail we are on: 0 = investment, 1 = email, 2 = phone
+  const [userDetailsStep, setUserDetailsStep] = useState(0);
+  const [answers, setAnswers] = useState<Answers>({
+    investment: "",
+    email: "",
+    phone: "",
+  });
   const router = useRouter();
 
   useEffect(() => {
@@ -25,9 +32,12 @@ const QuizPage: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         setQuestions(data);
-
-        // Initialize the answers object with 0 for all questions
-        const initialAnswers: Answers = { investment: "" };
+        // Initialize the answers object with default values
+        const initialAnswers: Answers = {
+          investment: "",
+          email: "",
+          phone: "",
+        };
         data.forEach((q: Question) => {
           initialAnswers[q.id] = 0; // Default value indicating no answer
         });
@@ -39,7 +49,21 @@ const QuizPage: React.FC = () => {
   const handleInvestmentChange = (amount: string) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
-      investment: amount, // Update investment amount
+      investment: amount,
+    }));
+  };
+
+  const handleEmailChange = (email: string) => {
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      email: email,
+    }));
+  };
+
+  const handlePhoneChange = (phone: string) => {
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      phone: phone,
     }));
   };
 
@@ -54,6 +78,22 @@ const QuizPage: React.FC = () => {
     });
   };
 
+  // Handles progression through the user details steps
+  const handleNextUserDetail = () => {
+    if (userDetailsStep < 2) {
+      setUserDetailsStep((prevStep) => prevStep + 1);
+    } else {
+      // When user details are complete, start the quiz
+      setCurrentQuestionIndex(0);
+    }
+  };
+
+  const handleBackUserDetail = () => {
+    if (userDetailsStep > 0) {
+      setUserDetailsStep((prevStep) => prevStep - 1);
+    }
+  };
+
   const handleNext = () => {
     if (currentQuestionIndex < questions.length) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
@@ -61,35 +101,115 @@ const QuizPage: React.FC = () => {
   };
 
   const handleBack = () => {
-    if (currentQuestionIndex > -1) {
+    if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
     }
   };
 
   const handleSubmit = async () => {
     console.log("Final Submission:", answers);
-    const userUid = localStorage.getItem('userUid');
+    const userUid = localStorage.getItem("userUid");
     const encodedAnswers = encodeURIComponent(JSON.stringify(answers)); // Encode for URL safety
-    const response = await fetch('/api/quiz/submit', {
-      method: 'POST',
+    const response = await fetch("/api/quiz/submit", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({questions:answers,"userID":userUid}),
+      body: JSON.stringify({ questions: answers, userID: userUid }),
     });
 
-    if(response.ok){
+    if (response.ok) {
       const data = await response.json();
-
-    router.push(`/distrib?answers=${encodedAnswers}`);
+      router.push(`/distrib?answers=${encodedAnswers}`);
+    } else {
+      throw new Error("Failed to submit quiz");
     }
+  };
 
-    if (!response.ok) {
-      throw new Error('Failed to submit quiz');
+  // Render the multi-step user details interface
+  const renderUserDetails = () => {
+    switch (userDetailsStep) {
+      case 0:
+        return (
+          <div className="flex flex-col items-center">
+            <h2 className="text-2xl font-bold mb-4">Enter your investment amount</h2>
+            <input
+              type="number"
+              value={answers.investment as string}
+              onChange={(e) => handleInvestmentChange(e.target.value)}
+              className="p-2 rounded border border-gray-300 w-64 text-black"
+              placeholder="Investment amount in Rs"
+            />
+            <div className="flex mt-4">
+              <button
+                onClick={handleNextUserDetail}
+                disabled={!answers.investment}
+                className="px-6 py-2 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c] disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        );
+      case 1:
+        return (
+          <div className="flex flex-col items-center">
+            <h2 className="text-2xl font-bold mb-4">Enter your email</h2>
+            <input
+              type="email"
+              value={answers.email as string}
+              onChange={(e) => handleEmailChange(e.target.value)}
+              className="p-2 rounded border border-gray-300 w-64 text-black"
+              placeholder="Email"
+            />
+            <div className="flex mt-4 space-x-4">
+              <button
+                onClick={handleBackUserDetail}
+                className="px-6 py-2 bg-gray-500 rounded-lg hover:bg-gray-600"
+              >
+                Back
+              </button>
+              <button
+                onClick={handleNextUserDetail}
+                disabled={!answers.email}
+                className="px-6 py-2 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c] disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        );
+      case 2:
+        return (
+          <div className="flex flex-col items-center">
+            <h2 className="text-2xl font-bold mb-4">Enter your phone number</h2>
+            <input
+              type="tel"
+              value={answers.phone as string}
+              onChange={(e) => handlePhoneChange(e.target.value)}
+              className="p-2 rounded border border-gray-300 w-64 text-black"
+              placeholder="Phone Number"
+            />
+            <div className="flex mt-4 space-x-4">
+              <button
+                onClick={handleBackUserDetail}
+                className="px-6 py-2 bg-gray-500 rounded-lg hover:bg-gray-600"
+              >
+                Back
+              </button>
+              <button
+                onClick={handleNextUserDetail}
+                disabled={!answers.phone}
+                className="px-6 py-2 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c] disabled:opacity-50"
+              >
+                Start Quiz
+              </button>
+            </div>
+          </div>
+        );
+      default:
+        return null;
     }
-
-     // Pass the encoded object
-
   };
 
   if (questions.length === 0) {
@@ -100,23 +220,7 @@ const QuizPage: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow flex flex-col items-center justify-center bg-gradient-to-b from-black to-[#03ffc824] text-white px-16">
         {currentQuestionIndex === -1 ? (
-          <div className="flex flex-col items-center">
-            <h2 className="text-2xl font-bold mb-4">Enter your investment amount</h2>
-            <input
-              type="number"
-              value={answers.investment as string}
-              onChange={(e) => handleInvestmentChange(e.target.value)}
-              className="p-2 rounded border border-gray-300 w-64 text-black"
-              placeholder="Investment amount in Rs"
-            />
-            <button
-              onClick={handleNext}
-              disabled={!answers.investment}
-              className="px-6 py-2 mt-4 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c] disabled:opacity-50"
-            >
-              Start Quiz
-            </button>
-          </div>
+          renderUserDetails()
         ) : (
           <>
             <div className="text-center mb-8">
