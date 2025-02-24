@@ -13,11 +13,34 @@ export async function POST(request: Request) {
         const body = await request.json();
         console.log('Received request body:', body);
         const userUid = body.questions.email
+        let risk_score = 0, diversity_score = 0, stability_score = 0;
 
-        console.log("Recieved UserId : ",userUid)
+        risk_score =
+        body.questions['1'] * 0.3 +
+        body.questions['2'] * 0.2 +
+        body.questions['3'] * 0.2 +
+        body.questions['5'] * 0.15 +
+        body.questions['6'] * 0.15;
+
+        diversity_score =
+        body.questions['4'] * 0.3 +
+        body.questions['5'] * 0.25 +
+        body.questions['9'] * 0.2 +
+        (2 - risk_score) * 0.25;
+
+        stability_score =
+        body.questions['1'] * 0.2 +
+        body.questions['2'] * 0.2 +
+        body.questions['6'] * 0.3 +
+        body.questions['7'] * 0.15 +
+        body.questions['8'] * 0.15;
+
+        body.risk = risk_score
+        body.diversity = diversity_score
+        body.stability = stability_score
+        
         const duplicateUser = await UserResponse.findOne({ userId: userUid });
         if (!duplicateUser) {
-            console.log("yahana hua tha")
             // Create new user response
             const userResponse = await UserResponse.create({
                 userId: userUid,
