@@ -45,6 +45,9 @@ export async function POST(request: Request) {
             const userResponse = await UserResponse.create({
                 userId: userUid,
                 questions: body.questions,
+                risk: body.risk,
+                diversity: body.diversity,
+                stability: body.stability
             });
             
         return NextResponse.json({
