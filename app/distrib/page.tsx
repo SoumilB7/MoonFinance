@@ -135,7 +135,7 @@ const SearchParamsHandler: React.FC = () => {
           <div className="flex flex-col-reverse md:flex-row items-center">
             <div className="w-full md:w-1/2 h-full font-thin text-[#6A706E] p-4 text-lg">
               <p className="pb-8">
-                Lorem ipsum dolor sit amet consectetur. Nec mauris ut id quam netus. Pellentesque sed aliquet tortor auctor dictum sodales leo.
+                The specifc assets along with their quantities as per the given distribution will be sent on your email.
               </p>
               <button className="rounded-lg w-[52%] h-fit bg-[#12C38C] p-4 text-white font-extrabold"
                 onClick={() => {
