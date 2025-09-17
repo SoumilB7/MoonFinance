@@ -153,14 +153,14 @@ const SearchParamsHandler: React.FC = () => {
                   </a>
                 </div>
               </div>
-              <p className="text-[#6A706E]">Email: shrey.moonfinance@gmail.com</p>
+              <p className="text-[#6A706E]">Email: shrey.baldev@gmail.com</p>
             </div>
             <div className="h-full w-1/2 flex justify-center shadow-slate-400 shadow-sm">
               <DonutChart equity={scores.equity / 100} debt={scores.debt / 100} gold={scores.gold / 100} />
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

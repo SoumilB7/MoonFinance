@@ -11,11 +11,11 @@ const HomePage: React.FC = () => {
     <div>
       {/* <LoginButton /> */}
       <Home />
-      <Solutions />
+      {/* <Solutions />
       <Recognitions />
       <Faq />
       <GetInTouch />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 };

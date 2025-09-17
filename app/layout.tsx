@@ -18,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Moon Finance",
+  title: "Super FIn",
   description: "Moon Finance - your personal AI investment advisor",
 };
 
@@ -32,7 +32,7 @@ export default function RootLayout({
       <AuthProvider>
         <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-            <Header />
+            {/* <Header /> */}
             {children}
           </body>
         </html>
