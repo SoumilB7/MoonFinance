@@ -24,6 +24,7 @@ const QuizPage: React.FC = () => {
     email: "",
     phone: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
   // Email validation: checks that the email matches a basic regex
@@ -119,23 +120,37 @@ const QuizPage: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+    if (isSubmitting) return; // Prevent double submission
+    
     console.log("Final Submission:", answers);
+    setIsSubmitting(true);
+    
     const userUid = localStorage.getItem("userUid");
     const encodedAnswers = encodeURIComponent(JSON.stringify(answers)); // Encode for URL safety
-    const response = await fetch("/api/quiz/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ questions: answers, userID: userUid }),
-    });
+    
+    // Try to submit to API but don't block navigation
+    try {
+      const response = await fetch("/api/quiz/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questions: answers, userID: userUid }),
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      router.push(`/distrib?answers=${encodedAnswers}`);
-    } else {
-      throw new Error("Failed to submit quiz");
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Quiz submitted successfully:", data);
+      } else {
+        console.warn("API submission failed, but continuing to results");
+      }
+    } catch (error) {
+      console.error("Error submitting quiz (continuing anyway):", error);
     }
+    
+    // Always navigate to distrib page regardless of API result
+    console.log("Navigating to /distrib with answers");
+    router.push(`/distrib?answers=${encodedAnswers}`);
   };
 
   // Render the multi-step user details interface
@@ -295,9 +310,10 @@ const QuizPage: React.FC = () => {
               {currentQuestionIndex === questions.length - 1 ? (
                 <button
                   onClick={handleSubmit}
-                  className="px-6 py-2 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c]"
+                  disabled={isSubmitting}
+                  className="px-6 py-2 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Submit
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
               ) : (
                 <button

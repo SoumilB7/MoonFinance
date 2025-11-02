@@ -18,8 +18,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Super FIn",
-  description: "Moon Finance - your personal AI investment advisor",
+  title: "SuperFin",
+  description: "SuperFin - AI-Powered Portfolio Management",
 };
 
 export default function RootLayout({
@@ -28,14 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    
-      <AuthProvider>
-        <html lang="en">
-          <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-            {/* <Header /> */}
-            {children}
-          </body>
-        </html>
-      </AuthProvider>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <AuthProvider>
+          <Header />
+          {children}
+        </AuthProvider>
+      </body>
+    </html>
   );
 }
