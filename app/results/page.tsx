@@ -118,7 +118,7 @@ const SearchParamsHandler: React.FC = () => {
     // Investment details
     doc.setFontSize(11);
     doc.setTextColor(50);
-    doc.text(`Investment Amount: ₹${investment.toLocaleString()}`, 20, 55);
+    doc.text(`Investment Amount: Rs. ${investment.toLocaleString()}`, 20, 55);
     doc.text(`Email: ${userEmail}`, 20, 62);
     doc.text(`Expected CAGR: 23.66%`, 20, 69);
     doc.text(`Assets Invested In: 3`, 20, 76);
@@ -131,21 +131,21 @@ const SearchParamsHandler: React.FC = () => {
 
     // Create table for allocations
     const tableData = [
-      ["Asset Class", "Allocation %", "Amount (₹)"],
+      ["Asset Class", "Allocation %", "Amount (Rs.)"],
       [
         "Equity",
         `${scores.equity}%`,
-        `₹${((investment * scores.equity) / 100).toLocaleString()}`,
+        `Rs. ${((investment * scores.equity) / 100).toLocaleString()}`,
       ],
       [
         "Debt",
         `${scores.debt}%`,
-        `₹${((investment * scores.debt) / 100).toLocaleString()}`,
+        `Rs. ${((investment * scores.debt) / 100).toLocaleString()}`,
       ],
       [
         "Gold",
         `${scores.gold}%`,
-        `₹${((investment * scores.gold) / 100).toLocaleString()}`,
+        `Rs. ${((investment * scores.gold) / 100).toLocaleString()}`,
       ],
     ];
 

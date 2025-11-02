@@ -74,7 +74,7 @@ export default function TestLoadingPage() {
           <div className="p-6 bg-gray-900 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">Option 2: Via Distrib Page</h2>
             <p className="text-gray-300 mb-4">
-              Go to the summary page first, then click "Get Distribution"
+              Go to the summary page first, then click &ldquo;Get Distribution&rdquo;
             </p>
             <button
               onClick={handleTestDistrib}
