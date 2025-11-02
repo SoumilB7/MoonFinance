@@ -91,76 +91,84 @@ const SearchParamsHandler: React.FC = () => {
     }
   }, [searchParams]);
 
+  const handleGetDistribution = () => {
+    const answers = searchParams.get("answers");
+    if (answers) {
+      router.push(`/analysis?answers=${answers}`);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white text-black">
-      <div className="md:flex-row flex-col items-center h-[20%] bg-[#F9F8F8] flex justify-center md:justify-evenly space-x-52 md:pb-5">
-        <div className="h-1/2 flex items-center mt-10 p-4">
-          <div className="text-2xl flex-row text-[#6A706E]">
-            Invested Amount
-            <p className="text-[#12C38C] text-4xl">
-              ₹{investment.toLocaleString()}
-            </p>
+    <div className="min-h-screen bg-gradient-to-b from-black to-[#03ffc89b24] text-white flex flex-col items-center justify-center px-8 pt-24 pb-12">
+      <div className="max-w-4xl w-full">
+        {/* Success Message */}
+        <div className="text-center mb-12">
+          <div className="mb-6">
+            <svg
+              className="w-24 h-24 mx-auto text-[#03FFC9]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
           </div>
+          <h1 className="text-5xl font-bold mb-4">Quiz Completed!</h1>
+          <p className="text-xl text-gray-300 mb-2">
+            Thank you for completing the investment quiz
+          </p>
+          <p className="text-lg text-[#03FFC9]">
+            Your responses have been recorded successfully
+          </p>
         </div>
-        <div className="flex items-center justify-center p-4 bg-white h-1/2 !m-0 !mb-10 md:!mb-0 md:!mt-10 shadow-gray-400 shadow-lg">
-          <Image src={circle} alt="" height={20} width={20} />
-          <div className="px-4">
-            <p className="text-lg font-semibold text-black">Mode</p>
-            <p className="text-[#959191]">CAGR</p>
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <h1 className="text-center md:text-left text-4xl md:text-5xl p-6 px-20 font-semibold">Your Assets</h1>
-        <div className="h-[20%] flex flex-col md:flex-row justify-between px-20">
-          <AssetBar title="Amount Invested" value={`₹ ${investment.toLocaleString()}`} />
-          <AssetBar
-            title="Expected CAGR"
-            value={
-              <>
-                23<span className="text-[#959191] text-2xl font-bold">.66%</span>
-              </>
-            }
-            valueClass="text-[#12C38C] font-bold"
-          />
-          <AssetBar title="Assets Invested in" value="3" />
-          <AssetBar title="Rebalance Frequency" value="Quarterly" />
-        </div>
-      </div>
-
-      <div className="h-full mt-6">
-        <div className="md:mt-0 mt-10 text-3xl p-2 md:pt-10 md:px-20 font-semibold text-center md:text-left">
-          About the Allocation
-          <div className="flex flex-col-reverse md:flex-row items-center">
-            <div className="w-full md:w-1/2 h-full font-thin text-[#6A706E] p-4 text-lg">
-              <p className="pb-8">
-                The specifc assets along with their quantities as per the given distribution will be sent on your email.
+        {/* Investment Summary Card */}
+        <div className="bg-gray-900 rounded-xl p-8 mb-8 border-2 border-[#03FFC980]">
+          <h2 className="text-2xl font-bold mb-6 text-center">Investment Summary</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="text-center p-4 bg-black rounded-lg">
+              <p className="text-gray-400 mb-2">Investment Amount</p>
+              <p className="text-3xl font-bold text-[#03FFC9]">
+                ₹{investment.toLocaleString()}
               </p>
-              <button className="rounded-lg w-[52%] h-fit bg-[#12C38C] p-4 text-white font-extrabold"
-                onClick={() => {
-                  console.log('click');
-                  router.push('/quiz');
-                }}>
-                Take Quiz Again
-              </button>
-              <p className="text-sm text-center w-full md:w-[52%]">You can risk analyze before investing.</p>
-              <div className="flex items-center pt-2 md:justify-normal justify-center">
-                <FaSquarePhone className="text-[#12C38C] text-5xl mt-4" />
-                <div>
-                  <a className="font-bold text-black px-4 text-3xl pt-4" href="https://wa.me/+916353332891" target="_blank" rel="noopener noreferrer">
-                    Contact Us
-                  </a>
-                </div>
-              </div>
-              <p className="text-[#6A706E]">Email: shrey.baldev@gmail.com</p>
             </div>
-            <div className="h-full w-1/2 flex justify-center shadow-slate-400 shadow-sm">
-              <DonutChart equity={scores.equity / 100} debt={scores.debt / 100} gold={scores.gold / 100} />
+            <div className="text-center p-4 bg-black rounded-lg">
+              <p className="text-gray-400 mb-2">Questions Answered</p>
+              <p className="text-3xl font-bold text-[#03FFC9]">9 / 9</p>
             </div>
           </div>
         </div>
-        {/* <Footer /> */}
+
+        {/* Call to Action */}
+        <div className="text-center">
+          <p className="text-xl mb-6 text-gray-300">
+            Ready to see your personalized investment distribution?
+          </p>
+          <button
+            onClick={handleGetDistribution}
+            className="px-12 py-4 bg-[#03ffc89b] rounded-lg hover:bg-[#2b937c] text-xl font-bold transition-all transform hover:scale-105 shadow-lg"
+          >
+            Get My Distribution Analysis
+          </button>
+          <p className="text-sm text-gray-400 mt-4">
+            This will take 14-20 seconds to analyze your portfolio
+          </p>
+        </div>
+
+        {/* Additional Options */}
+        <div className="mt-12 text-center space-y-4">
+          <button
+            onClick={() => router.push('/quiz')}
+            className="text-[#03FFC9] hover:text-white transition-colors underline"
+          >
+            Retake Quiz
+          </button>
+        </div>
       </div>
     </div>
   );
