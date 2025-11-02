@@ -4,7 +4,7 @@ import Card from "./Card";
 import GraphCard from "./GraphCard";
 import AssetSection from "./Alloc";
 import TransactionHistory from "./TransactionHistory";
-import Footer from "../components/Footer";
+
 
 const Page = () => {
   const [transactions, setTransactions] = useState<
@@ -144,7 +144,6 @@ const Page = () => {
         />
       </div>
       <div className="mt-2">
-        <Footer></Footer>
       </div>
     </div>
   );
