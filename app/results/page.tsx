@@ -171,7 +171,7 @@ const SearchParamsHandler: React.FC = () => {
     });
 
     // ✅ Stock Suggestions Section
-    let finalY = (doc).lastAutoTable?.finalY || 140;
+    const finalY = (doc).lastAutoTable?.finalY || 140;
     doc.setFontSize(13);
     doc.setTextColor(0);
     doc.text("Suggested Stocks", 20, finalY + 15);
