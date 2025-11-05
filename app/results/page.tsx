@@ -95,58 +95,69 @@ const SearchParamsHandler: React.FC = () => {
     }
   }, [searchParams]);
 
+  // ✅ Updated downloadPDF function with Stock Suggestions based on risk score
   const downloadPDF = () => {
     const doc = new jsPDF();
 
     // Add title
     doc.setFontSize(22);
-    doc.setTextColor(18, 195, 140); // #12C38C
+    doc.setTextColor(18, 195, 140);
     doc.text("SuperFin Investment Report", 105, 20, { align: "center" });
 
     // Add date
     doc.setFontSize(10);
     doc.setTextColor(100);
-    doc.text(`Generated: ${new Date().toLocaleDateString()}`, 105, 28, {
-      align: "center",
-    });
+    doc.text(`Generated: ${new Date().toLocaleDateString()}`, 105, 28, { align: "center" });
 
-    // Add user info section
+    // ✅ Determine Risk Category Based on risk_score
+    // Fix: ensure non-null before JSON.parse
+  const answersParam = searchParams.get("answers") || "{}";
+  const answers = JSON.parse(answersParam);
+    const answerValues = Object.values(answers).filter((value) => typeof value === "number");
+    let risk_score = 0;
+    if (answerValues.length === 9) {
+      risk_score =
+        answerValues[0] * 0.3 +
+        answerValues[1] * 0.2 +
+        answerValues[2] * 0.2 +
+        answerValues[4] * 0.15 +
+        answerValues[5] * 0.15;
+    }
+
+    let riskLabel = "";
+    let suggestedStocks = [];
+
+    if (risk_score <= 0.5) {
+      riskLabel = "Low Risk";
+      suggestedStocks = ["HDFCBANK", "OFSS", "TCS", "RELIANCE", "ARE&M", "IOC", "ITC", "ONGC"];
+    } else if (risk_score <= 1.5) {
+      riskLabel = "Mid Risk";
+      suggestedStocks = ["CASTROLIND", "NATIONALUM", "NMDC", "SAIL", "NBCC", "GMRAIRPORT", "IDEA"];
+    } else {
+      riskLabel = "High Risk";
+      suggestedStocks = ["HINDZINC", "NMDC", "HINDPETRO", "IOC", "ONGC", "IEX", "GMRAIRPORT", "IDFCFIRSTB"];
+    }
+
+    // Investment Summary
     doc.setFontSize(14);
     doc.setTextColor(0);
     doc.text("Investment Summary", 20, 45);
 
-    // Investment details
     doc.setFontSize(11);
     doc.setTextColor(50);
     doc.text(`Investment Amount: Rs. ${investment.toLocaleString()}`, 20, 55);
     doc.text(`Email: ${userEmail}`, 20, 62);
     doc.text(`Expected CAGR: 23.66%`, 20, 69);
-    doc.text(`Assets Invested In: 3`, 20, 76);
-    doc.text(`Rebalance Frequency: Quarterly`, 20, 83);
+    doc.text(`Risk Profile: ${riskLabel}`, 20, 76);
+    doc.text(`Assets Invested In: 3`, 20, 83);
+    doc.text(`Rebalance Frequency: Quarterly`, 20, 90);
 
-    // Add allocation section
-    doc.setFontSize(14);
-    doc.setTextColor(0);
-    doc.text("Asset Allocation", 20, 100);
-
-    // Create table for allocations
+    // Asset Allocation
     const tableData = [
       ["Asset Class", "Allocation %", "Amount (Rs.)"],
-      [
-        "Equity",
-        `${scores.equity}%`,
-        `Rs. ${((investment * scores.equity) / 100).toLocaleString()}`,
-      ],
-      [
-        "Debt",
-        `${scores.debt}%`,
-        `Rs. ${((investment * scores.debt) / 100).toLocaleString()}`,
-      ],
-      [
-        "Gold",
-        `${scores.gold}%`,
-        `Rs. ${((investment * scores.gold) / 100).toLocaleString()}`,
-      ],
+      ["Equity", `${scores.equity}%`, `Rs. ${((investment * scores.equity) / 100).toLocaleString()}`],
+      ["Debt", `${scores.debt}%`, `Rs. ${((investment * scores.debt) / 100).toLocaleString()}`],
+      ["Gold", `${scores.gold}%`, `Rs. ${((investment * scores.gold) / 100).toLocaleString()}`],
     ];
 
     autoTable(doc, {
@@ -154,60 +165,28 @@ const SearchParamsHandler: React.FC = () => {
       head: [tableData[0]],
       body: tableData.slice(1),
       theme: "grid",
-      headStyles: {
-        fillColor: [18, 195, 140],
-        textColor: 255,
-        fontSize: 11,
-        fontStyle: "bold",
-      },
-      bodyStyles: {
-        fontSize: 10,
-      },
-      alternateRowStyles: {
-        fillColor: [245, 245, 245],
-      },
+      headStyles: { fillColor: [18, 195, 140], textColor: 255, fontSize: 11, fontStyle: "bold" },
+      bodyStyles: { fontSize: 10 },
+      alternateRowStyles: { fillColor: [245, 245, 245] },
     });
 
-    // Add note section
-    const finalY = (doc as any).lastAutoTable?.finalY || 140;
-    doc.setFontSize(12);
+    // ✅ Stock Suggestions Section
+    let finalY = (doc).lastAutoTable?.finalY || 140;
+    doc.setFontSize(13);
     doc.setTextColor(0);
-    doc.text("Important Notes:", 20, finalY + 15);
+    doc.text("Suggested Stocks", 20, finalY + 15);
 
     doc.setFontSize(10);
     doc.setTextColor(50);
-    const notes = [
-      "• This allocation is based on your risk profile and investment goals.",
-      "• Portfolio will be rebalanced quarterly to maintain optimal allocation.",
-      "• Detailed asset breakdown will be sent to your registered email.",
-      "• Contact us for personalized investment advisory services.",
-    ];
-
-    notes.forEach((note, index) => {
-      doc.text(note, 20, finalY + 25 + index * 7);
+    suggestedStocks.forEach((stock, i) => {
+      doc.text(`• ${stock}`, 20, finalY + 25 + i * 7);
     });
 
-    // Add contact info
-    doc.setFontSize(10);
-    doc.setTextColor(18, 195, 140);
-    doc.text("Contact: shrey.baldev@gmail.com", 105, finalY + 60, {
-      align: "center",
-    });
-    doc.text("WhatsApp: +91 6353332891", 105, finalY + 67, {
-      align: "center",
-    });
-
-    // Add footer
+    // Footer
     doc.setFontSize(8);
     doc.setTextColor(150);
-    doc.text(
-      "SuperFin - AI-Powered Portfolio Management",
-      105,
-      280,
-      { align: "center" }
-    );
+    doc.text("SuperFin - AI-Powered Portfolio Management", 105, 280, { align: "center" });
 
-    // Save the PDF
     doc.save(`SuperFin_Investment_Report_${new Date().getTime()}.pdf`);
   };
 
