@@ -220,6 +220,11 @@ const Header: React.FC = () => {
               B2B
             </Link>
           </li>
+          <li>
+            <Link href="/stocks" className="hover:text-violet-500">
+              Stocks
+            </Link>
+          </li>
           {/* <li>
             <Link href="/services" className="hover:text-violet-500">
               Services
@@ -279,6 +284,11 @@ const Header: React.FC = () => {
             <li>
               <Link href="/b2b" className="hover:text-violet-500">
                 B2B
+              </Link>
+            </li>
+            <li>
+              <Link href="/stocks" className="hover:text-violet-500">
+                Stocks
               </Link>
             </li>
             {/* <li>
