@@ -133,6 +133,68 @@ function buildSummary(companyName, headline) {
   return `Latest tracked headline for ${companyName}: ${headline}`;
 }
 
+function deduceSentiment(headline, summary) {
+  const text = `${headline || ""} ${summary || ""}`.toLowerCase();
+  const positive = [
+    "gain",
+    "rise",
+    "rally",
+    "up",
+    "beat",
+    "record",
+    "strong",
+    "buy",
+    "upgrade",
+    "outperform",
+    "positive",
+    "wins",
+    "wins",
+    "acquire",
+    "acquisition",
+    "expan",
+    "growth",
+    "soar",
+    "surge",
+  ];
+  const negative = [
+    "fall",
+    "drop",
+    "down",
+    "decline",
+    "loss",
+    "weak",
+    "weakness",
+    "sell",
+    "downgrade",
+    "concern",
+    "warn",
+    "slump",
+    "miss",
+    "slower",
+    "cut",
+    "delay",
+    "risk",
+    "investigation",
+    "lawsuit",
+    "fraud",
+    "uncertain",
+    "default",
+  ];
+
+  const positiveMatches = positive.filter((term) => text.includes(term));
+  const negativeMatches = negative.filter((term) => text.includes(term));
+
+  if (positiveMatches.length > negativeMatches.length) {
+    return "good";
+  }
+
+  if (negativeMatches.length > positiveMatches.length) {
+    return "bad";
+  }
+
+  return "neutral";
+}
+
 async function fetchText(url) {
   const response = await fetch(url, {
     headers: REQUEST_HEADERS,
@@ -283,12 +345,16 @@ function parseLatestNews(xmlText, companyName) {
   const publishedAt = extractTag(firstItem, "pubDate") || null;
   const url = extractTag(firstItem, "link") || null;
 
+  const summary = buildSummary(companyName, headline);
+  const sentiment = deduceSentiment(headline, summary);
+
   return {
     headline,
-    summary: buildSummary(companyName, headline),
+    summary,
     source,
     publishedAt,
     url,
+    sentiment,
   };
 }
 

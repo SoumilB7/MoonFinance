@@ -15,6 +15,7 @@ type CompanyNews = {
     source: string;
     publishedAt: string | null;
     url: string | null;
+    sentiment?: "good" | "neutral" | "bad";
   };
 };
 

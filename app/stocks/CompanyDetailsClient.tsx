@@ -8,6 +8,7 @@ type LatestNews = {
   source: string;
   publishedAt: string | null;
   url: string | null;
+  sentiment?: "good" | "neutral" | "bad";
 };
 
 type CompanyNews = {
@@ -53,6 +54,37 @@ function formatMarketCap(value: number | null) {
     maximumFractionDigits: 2,
     minimumFractionDigits: value >= 1000 ? 0 : 2,
   })} Cr`;
+}
+
+function getSentimentBadge(sentiment?: "good" | "neutral" | "bad") {
+  if (!sentiment) {
+    return null;
+  }
+
+  const config = {
+    good: {
+      label: "Positive",
+      className: "bg-emerald-100 text-emerald-700 border-emerald-200",
+    },
+    neutral: {
+      label: "Neutral",
+      className: "bg-gray-100 text-gray-700 border-gray-200",
+    },
+    bad: {
+      label: "Negative",
+      className: "bg-rose-100 text-rose-700 border-rose-200",
+    },
+  } as const;
+
+  const { label, className } = config[sentiment];
+
+  return (
+    <span
+      className={`inline-flex items-center justify-center rounded-full border px-3 py-1 text-xs font-semibold ${className}`}
+    >
+      {label}
+    </span>
+  );
 }
 
 function sortCompanies(companies: CompanyNews[], sortOption: SortOption) {
@@ -160,7 +192,10 @@ export default function CompanyDetailsClient({ companies }: { companies: Company
             </div>
 
             <div className="mt-5 rounded-2xl bg-gray-50 p-4">
-              <p className="text-sm font-medium text-gray-500">Latest headline</p>
+              <div className="flex items-center justify-between gap-4">
+                <p className="text-sm font-medium text-gray-500">Latest headline</p>
+                {getSentimentBadge(company.latestNews.sentiment)}
+              </div>
               <p className="mt-2 text-base font-semibold leading-7 text-black">
                 {company.latestNews.headline}
               </p>
